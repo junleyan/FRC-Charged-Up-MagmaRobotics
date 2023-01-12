@@ -21,8 +21,9 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
   public static class JoyStickAxis{
-    public static final int leftDriveJoyStick = 1;
-    public static final int rightDriveJoyStick = 5;
+    public static final int positionJoystick = 1;
+    public static final int angleJoystick = 2;
+    public static final int multJoystick = 3;
   }
 
   public static class ControllerPort{

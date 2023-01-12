@@ -21,9 +21,10 @@ public class DriveTrainCommand extends CommandBase{
 
     @Override
     public void execute(){
-        driveTrain.tankDrive(
-            driveController.getRawAxis(Constants.JoyStickAxis.leftDriveJoyStick), 
-            driveController.getRawAxis(Constants.JoyStickAxis.rightDriveJoyStick)
+        driveTrain.arcadeDrive(
+            driveController.getRawAxis(Constants.JoyStickAxis.positionJoystick), 
+            driveController.getRawAxis(Constants.JoyStickAxis.angleJoystick),
+            driveController.getRawAxis(Constants.JoyStickAxis.multJoystick)
             );
     }
 

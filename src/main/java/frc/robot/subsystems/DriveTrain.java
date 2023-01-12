@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import java.lang.Math;
 
 
 public class DriveTrain extends SubsystemBase {
@@ -26,9 +27,16 @@ public class DriveTrain extends SubsystemBase {
     diffDrive.stopMotor();
   }
 
+  public double adjustValue(double speed){
+    if (speed <= 0){
+      return 0.5-(Math.abs(speed) / 2);
+    } 
+    return speed / 2;
+  }
+
   // Differential drive
-  public void tankDrive(double leftSpeed, double rightSpeed) {
-    diffDrive.tankDrive(-leftSpeed, rightSpeed);
+  public void arcadeDrive(double position, double angle, double speed) {
+    diffDrive.arcadeDrive(-position, -angle * Math.abs(speed));
   }
 
 
