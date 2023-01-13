@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import frc.robot.commands.Autos;
 import frc.robot.commands.DriveTrainCommand;
 import frc.robot.commands.Run;
 import frc.robot.commands.Stop;
@@ -73,6 +72,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    return null;
   }
 }

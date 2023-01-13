@@ -23,20 +23,28 @@ public class DriveTrain extends SubsystemBase {
     diffDrive = new DifferentialDrive(leftMotor, rightMotor);
   }
 
+  /**
+   * calls stopMotor method within {@link edu.wpi.first.wpilibj.drive.DifferentialDrive}
+   * to stop motors
+   */
   public void stopMotor() {
     diffDrive.stopMotor();
   }
 
-  public double adjustValue(double speed){
+
+  /**
+   * {@param speed the speed multiplier}
+   */
+  public double adjusedSpeed(double speed){
     if (speed <= 0){
       return 0.5-(Math.abs(speed) / 2);
     } 
-    return speed / 2;
+    return speed/2 + 0.5;
   }
 
   // Differential drive
   public void arcadeDrive(double position, double angle, double speed) {
-    diffDrive.arcadeDrive(-position, -angle * Math.abs(speed));
+    diffDrive.arcadeDrive(-position, -angle * this.adjusedSpeed(speed));
   }
 
 
