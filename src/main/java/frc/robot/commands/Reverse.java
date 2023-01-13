@@ -3,10 +3,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
-public class Run extends CommandBase{
+public class Reverse extends CommandBase{
     private final Arm arm;
     
-    public Run(Arm arm){
+    public Reverse(Arm arm){
         this.arm = arm;
         addRequirements(arm);
     }
@@ -17,8 +17,8 @@ public class Run extends CommandBase{
 
     @Override
     public void execute(){
-        arm.run();
-        System.out.println("Arm run");
+        arm.reverse();
+        System.out.println("Arm reverse");
     }
 
     @Override

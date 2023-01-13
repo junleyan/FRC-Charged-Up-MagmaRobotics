@@ -4,24 +4,31 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.PS4Controller.Button;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 
 public class Arm extends SubsystemBase {
 
-  public PWMSparkMax arm;
+  public Spark lowerArm;
   
   public Arm() {
-    arm = new PWMSparkMax(3);
+    lowerArm = new Spark(Constants.Subsystems.Arm.port);
   }
 
   public void run() {
-    arm.set(0.5);
+    lowerArm.set(Constants.Subsystems.Arm.speed);
+  }
+
+  public void reverse(){
+    lowerArm.set(-Constants.Subsystems.Arm.speed);
   }
 
   public void stop(){
-    arm.stopMotor();
+    lowerArm.stopMotor();
   }
 
 }

@@ -36,10 +36,10 @@ public class DriveTrain extends SubsystemBase {
    * {@param speed the speed multiplier}
    */
   public double adjusedSpeed(double speed){
-    if (speed <= 0){
-      return 0.5-(Math.abs(speed) / 2);
+    if (-speed <= 0){
+      return 0.5-(Math.abs(-speed) / 2);
     } 
-    return speed/2 + 0.5;
+    return (-speed/2) + 0.5;
   }
 
   // Differential drive

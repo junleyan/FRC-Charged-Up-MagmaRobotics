@@ -21,6 +21,7 @@ public class Stop extends CommandBase{
     @Override
     public void execute(){
         arm.stop();
+        System.out.println("Arm stop");
     }
 
     @Override

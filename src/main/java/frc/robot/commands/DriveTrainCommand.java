@@ -24,7 +24,7 @@ public class DriveTrainCommand extends CommandBase{
         driveTrain.arcadeDrive(
             driveController.getRawAxis(Constants.JoyStickAxis.positionJoystick), 
             driveController.getRawAxis(Constants.JoyStickAxis.angleJoystick),
-            driveController.getRawAxis(Constants.JoyStickAxis.multJoystick)
+            driveController.getRawAxis(Constants.JoyStickAxis.speedJoystick)
             );
     }
 
