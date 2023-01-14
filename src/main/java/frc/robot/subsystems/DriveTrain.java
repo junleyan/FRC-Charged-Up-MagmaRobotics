@@ -35,7 +35,7 @@ public class DriveTrain extends SubsystemBase {
   /**
    * {@param speed the speed multiplier}
    */
-  public double adjusedSpeed(double speed){
+  public double adjustedSpeed(double speed){
     if (-speed <= 0){
       return 0.5-(Math.abs(-speed) / 2);
     } 
@@ -44,7 +44,7 @@ public class DriveTrain extends SubsystemBase {
 
   // Differential drive
   public void arcadeDrive(double position, double angle, double speed) {
-    diffDrive.arcadeDrive(-position, -angle * this.adjusedSpeed(speed));
+    diffDrive.arcadeDrive(-position, -angle * this.adjustedSpeed(speed));
   }
 
 
