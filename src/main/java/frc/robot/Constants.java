@@ -22,9 +22,18 @@ public class Constants {
     }
 
     public static class JoyStickAxis{
-        public static final int positionJoystick = 1;
-        public static final int angleJoystick = 2;
-        public static final int speedJoystick =3;
+
+        public static class JoystickController {
+            public static final int positionJoystick = 1;
+            public static final int angleJoystick = 2;
+            public static final int speedJoystick = 3;
+        }
+
+        public static class XboxController {
+            public static final int leftJoystick = 1;
+            public static final int rightJoystick = 4;
+        }
+       
     }
 
     public static class Button{

@@ -42,9 +42,16 @@ public class DriveTrain extends SubsystemBase {
     return (-speed/2) + 0.5;
   }
 
-  // Differential drive
-  public void arcadeDrive(double position, double angle, double speed) {
+  public void arcadeDriveWithJoystick(double position, double angle, double speed) {
     diffDrive.arcadeDrive(-position, -angle * this.adjustedSpeed(speed));
+  }
+
+  public void arcadeDriveWithXbox(double position, double angle) {
+    diffDrive.arcadeDrive(-position, -angle);
+  }
+
+  public void diffDrive(double leftPower, double rightPower) {
+    diffDrive.tankDrive(-leftPower, -rightPower);
   }
 
 

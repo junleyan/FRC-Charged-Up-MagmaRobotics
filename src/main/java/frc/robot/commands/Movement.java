@@ -4,13 +4,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
-public class AutoDrive extends CommandBase {
+public class Movement extends CommandBase {
     private double power, duration;
     private DriveTrain driveTrain;
 
-    public AutoDrive(DriveTrain driveTrain, double duration, double power) {
+    public Movement(DriveTrain driveTrain, double duration, double power) {
         this.driveTrain = driveTrain;
-        
         this.duration = duration;
         this.power = power;
         addRequirements(driveTrain);
@@ -24,7 +23,7 @@ public class AutoDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     public void execute() {
-        driveTrain.arcadeDrive(this.power, 0, 1);
+        driveTrain.arcadeDriveWithJoystick(this.power, 0, 1);
         System.out.println("executing auto");
     }
 

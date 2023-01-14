@@ -19,13 +19,13 @@ public class DriveTrainCommand extends CommandBase{
         public void initialize() {
     }
 
+    //arcadeDriveWithXbox = Katelyn
+    //diffDrive = Standard
     @Override
-    public void execute(){
-        driveTrain.arcadeDrive(
-            driveController.getRawAxis(Constants.JoyStickAxis.positionJoystick), 
-            driveController.getRawAxis(Constants.JoyStickAxis.angleJoystick),
-            driveController.getRawAxis(Constants.JoyStickAxis.speedJoystick)
-            );
+    public void execute() {
+        driveTrain.diffDrive(
+            driveController.getRawAxis(Constants.JoyStickAxis.XboxController.leftJoystick), 
+            driveController.getRawAxis(Constants.JoyStickAxis.XboxController.rightJoystick));
     }
 
     @Override

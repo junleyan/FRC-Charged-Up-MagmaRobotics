@@ -4,7 +4,7 @@
 
 package frc.robot;
 
-import frc.robot.commands.AutoDrive;
+import frc.robot.commands.Movement;
 import frc.robot.commands.DriveTrainCommand;
 import frc.robot.commands.Reverse;
 import frc.robot.commands.Run;
@@ -69,6 +69,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new AutoDrive(driveTrain, 2000, 0.5);
+    return new Movement(driveTrain, 2000, 0.5);
   }
 }
