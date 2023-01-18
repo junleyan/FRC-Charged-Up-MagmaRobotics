@@ -6,9 +6,9 @@ package frc.robot;
 
 import frc.robot.commands.Movement;
 import frc.robot.commands.DriveTrainCommand;
-import frc.robot.commands.Reverse;
-import frc.robot.commands.Run;
-import frc.robot.commands.Stop;
+import frc.robot.commands.ArmDown;
+import frc.robot.commands.ArmUp;
+import frc.robot.commands.ArmStop;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.XboxController;
@@ -59,8 +59,8 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    button.onTrue(new Run(arm)).onFalse(new Stop(arm));
-    button2.onTrue(new Reverse(arm)).onFalse(new Stop(arm));
+    button.onTrue(new ArmUp(arm)).onFalse(new ArmStop(arm));
+    button2.onTrue(new ArmDown(arm)).onFalse(new ArmStop(arm));
   }
 
   /**

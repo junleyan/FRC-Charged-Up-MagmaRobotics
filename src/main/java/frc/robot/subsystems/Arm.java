@@ -11,22 +11,44 @@ import frc.robot.Constants;
 
 public class Arm extends SubsystemBase {
 
-  public Spark lowerArm;
+
+  /**
+   * an abstract representation of a physical robot arm
+   */
+  private final Spark lowerArm;
   
+
+  /**
+   * subsystem base object for arm
+   */
   public Arm() {
     lowerArm = new Spark(Constants.Subsystems.Arm.port);
   }
 
-  public void run() {
+
+  /**
+   * arm goes up by setting power on the arm motor
+   */
+  public void up() {
     lowerArm.set(Constants.Subsystems.Arm.speed);
   }
 
-  public void reverse(){
+
+  /**
+   * arm goes down by setting power on the arm motor
+   */
+  public void down(){
     lowerArm.set(-Constants.Subsystems.Arm.speed);
   }
 
+
+  /**
+   * calls stopMotor method within {@link edu.wpi.first.wpilibj.drive.DifferentialDrive}
+   * to stop motors
+   */
   public void stop(){
     lowerArm.stopMotor();
   }
 
+  
 }
