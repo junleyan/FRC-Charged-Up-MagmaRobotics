@@ -1,19 +1,22 @@
-package frc.robot.commands;
+package frc.robot.commands.arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
 
-public class ArmDown extends CommandBase{
+public class ArmUp extends CommandBase{
 
 
+    /**
+     * an instance of {@link frc.robot.subsystems.Arm}
+     */
     private final Arm arm;
     
 
     /**
      * @param arm an instance of {@link frc.robot.subsystems.Arm}
      */
-    public ArmDown(Arm arm){
+    public ArmUp(Arm arm){
         this.arm = arm;
         addRequirements(arm);
     }
@@ -29,8 +32,8 @@ public class ArmDown extends CommandBase{
      */
     @Override
     public void execute(){
-        arm.down();
-        System.out.println("Arm is reversing");
+        this.arm.up();
+        System.out.println("Arm is on");
     }
 
 

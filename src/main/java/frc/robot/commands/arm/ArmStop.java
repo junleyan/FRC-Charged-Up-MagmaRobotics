@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
@@ -7,6 +7,9 @@ import frc.robot.subsystems.Arm;
 public class ArmStop extends CommandBase{
 
 
+    /**
+     * an instance of {@link frc.robot.subsystems.Arm}
+     */
     private final Arm arm;
     
 
@@ -29,7 +32,7 @@ public class ArmStop extends CommandBase{
      */
     @Override
     public void execute(){
-        arm.stop();
+        this.arm.stop();
         System.out.println("Arm is stopped");
     }
 

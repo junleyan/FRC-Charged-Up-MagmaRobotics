@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.drive;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -9,6 +9,9 @@ import frc.robot.subsystems.DriveTrain;
 public class DriveTrainCommand extends CommandBase{
 
 
+    /**
+     * an instance of {@link frc.robot.subsystems.DriveTrain}
+     */
     private final DriveTrain driveTrain;
     private final XboxController driveController;
 
@@ -36,9 +39,9 @@ public class DriveTrainCommand extends CommandBase{
      */
     @Override
     public void execute() {
-        driveTrain.diffDrive(
-            driveController.getRawAxis(Constants.JoyStickAxis.XboxController.leftJoystick), 
-            driveController.getRawAxis(Constants.JoyStickAxis.XboxController.rightJoystick));
+        this.driveTrain.arcadeDriveWithXbox(
+            this.driveController.getRawAxis(Constants.JoyStickAxis.XboxController.leftJoystick), 
+            this.driveController.getRawAxis(Constants.JoyStickAxis.XboxController.rightJoystick));
     }
 
 

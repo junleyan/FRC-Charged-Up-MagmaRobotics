@@ -4,11 +4,11 @@
 
 package frc.robot;
 
-import frc.robot.commands.Movement;
-import frc.robot.commands.DriveTrainCommand;
-import frc.robot.commands.ArmDown;
-import frc.robot.commands.ArmUp;
-import frc.robot.commands.ArmStop;
+import frc.robot.commands.arm.ArmDown;
+import frc.robot.commands.arm.ArmStop;
+import frc.robot.commands.arm.ArmUp;
+import frc.robot.commands.drive.DriveTrainCommand;
+import frc.robot.commands.drive.Movement;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.XboxController;
@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -24,51 +25,57 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  DriveTrain driveTrain;
-  XboxController driveController;
-  JoystickButton button;
-  JoystickButton button2;
-  Arm arm;
-  
-  
-  // The robot's subsystems and commands are defined here...
 
-  // Replace with CommandPS4Controller or CommandJoystick if needed
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
-    driveTrain = new DriveTrain();
-    driveController = new XboxController(Constants.ControllerPort.driver);
-    button = new JoystickButton(driveController, Constants.Button.armButton);
-    button2 = new JoystickButton(driveController, Constants.Button.armButton2);
-    arm = new Arm();
-    driveTrain.setDefaultCommand(new DriveTrainCommand(driveTrain, driveController));
+    // The robot's subsystems and commands are defined here... 
+    DriveTrain driveTrain;
+    Arm arm;
+
+    XboxController driverController;
+    JoystickButton button;
+    JoystickButton button2;
     
-    // Configure the trigger bindings
-    configureBindings();
-  }
+    
+    /** The container for the robot. Contains subsystems, OI devices, and commands. */
+    public RobotContainer() {
+        this.driveTrain = new DriveTrain();
+        this.arm = new Arm();
 
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
-  private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    button.onTrue(new ArmUp(arm)).onFalse(new ArmStop(arm));
-    button2.onTrue(new ArmDown(arm)).onFalse(new ArmStop(arm));
-  }
+        this.driverController = new XboxController(Constants.ControllerPort.driver);
+        this.button = new JoystickButton(driverController, Constants.Button.armButton);
+        this.button2 = new JoystickButton(driverController, Constants.Button.armButton2);
+      
+        this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driverController));
+      
+        // Configure the trigger bindings
+        this.configureBindings();
+    }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    return new Movement(driveTrain, 2000, 0.5);
-  }
+
+    /**
+     * Use this method to define your trigger->command mappings. Triggers can be created via the
+     * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
+     * predicate, or via the named factories in {@link
+     * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
+     * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
+     * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
+     * joysticks}.
+     */
+    private void configureBindings() {
+        // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+        this.button.onTrue(new ArmUp(this.arm)).onFalse(new ArmStop(this.arm));
+        this.button2.onTrue(new ArmDown(this.arm)).onFalse(new ArmStop(this.arm));
+    }
+
+
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+        return new Movement(this.driveTrain, 2000, 0.5);
+    }
+
+
 }

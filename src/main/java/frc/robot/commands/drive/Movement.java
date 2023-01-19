@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.drive;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
@@ -19,35 +19,38 @@ public class Movement extends CommandBase {
     }
 
 
-    // Called just before this Command runs the first time
+    // called just before this Command runs the first time
+    // calculates when to end Command
     public void initialize() {
         double currentTime = System.currentTimeMillis();
         this.duration = (currentTime + this.duration);
     }
 
 
-    // Called repeatedly when this Command is scheduled to run
+    // called repeatedly when this Command is scheduled to run
     public void execute() {
-        driveTrain.arcadeDriveWithJoystick(this.power, 0, 1);
+        this.driveTrain.arcadeDriveWithJoystick(this.power, 0, 1);
         System.out.println("executing auto");
     }
 
 
-    // Make this return true when this Command no longer needs to run execute()
+    // make this return true when this Command no longer needs to run execute()
+    // checks if the time has passed the set duration
     public boolean isFinished() {
         System.out.println("auto done");
         return System.currentTimeMillis() >= this.duration;
     }
 
 
-    // Called once after isFinished returns true
+    // called once after isFinished returns true
+    // drive train is stopped
     protected void end() {
-        driveTrain.stopMotor();
+        this.driveTrain.stopMotor();
     }
 
 
     protected void interrupted() {
-        end();
+        this.end();
     }
 
     
