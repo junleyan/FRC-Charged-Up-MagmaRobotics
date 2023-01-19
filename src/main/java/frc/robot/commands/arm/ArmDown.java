@@ -33,7 +33,6 @@ public class ArmDown extends CommandBase{
     @Override
     public void execute(){
         this.arm.down();
-        System.out.println("Arm is reversing");
     }
 
 

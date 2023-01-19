@@ -33,7 +33,6 @@ public class ArmStop extends CommandBase{
     @Override
     public void execute(){
         this.arm.stop();
-        System.out.println("Arm is stopped");
     }
 
 

@@ -33,7 +33,6 @@ public class ArmUp extends CommandBase{
     @Override
     public void execute(){
         this.arm.up();
-        System.out.println("Arm is on");
     }
 
 

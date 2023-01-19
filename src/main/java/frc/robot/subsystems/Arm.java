@@ -13,16 +13,22 @@ public class Arm extends SubsystemBase {
 
 
     /**
-    * an abstract representation of a physical robot arm
-    */
-    private final Spark lowerArm;
+     * an abstract representation of a physical robot arm
+     */
+    private Spark lowerArm;
   
 
     /**
      * subsystem base object for arm
      */
     public Arm() {
-        this.lowerArm = new Spark(Constants.Subsystems.Arm.port);
+        try {
+            this.lowerArm = new Spark(Constants.Subsystems.Arm.port);
+            System.out.println("Subsystem Log: Lower arm is configured to port " + Constants.Subsystems.Arm.port);
+        } 
+        catch(Exception e) {
+            System.out.println("Subsystem Log: Lower arm failed to be configured to port " + Constants.Subsystems.Arm.port);
+        }    
     }
 
 
@@ -31,6 +37,7 @@ public class Arm extends SubsystemBase {
      */
     public void up() {
         this.lowerArm.set(Constants.Subsystems.Arm.speed);
+        System.out.println("Command Log: Arm is going up");
     }
 
 
@@ -39,6 +46,7 @@ public class Arm extends SubsystemBase {
      */
     public void down(){
         this.lowerArm.set(-Constants.Subsystems.Arm.speed);
+        System.out.println("Command Log: Arm is going down");
     }
 
 
@@ -48,6 +56,7 @@ public class Arm extends SubsystemBase {
      */
     public void stop(){
         this.lowerArm.stopMotor();
+        System.out.println("Command Log: Arm is stopped");
     }
 
   

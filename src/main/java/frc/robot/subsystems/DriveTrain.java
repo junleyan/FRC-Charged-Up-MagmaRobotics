@@ -16,22 +16,39 @@ public class DriveTrain extends SubsystemBase {
 
 
     /**
-      * an abstract representation of a physical drive motor
-      */
-    private final MotorController leftMotor, rightMotor;
+     * an abstract representation of a physical drive motor
+     */
+    private MotorController leftMotor, rightMotor;
     /**
-      * an abstract representation of a drive base
-      */
-    private final DifferentialDrive diffDrive;
+     * an abstract representation of a drive base
+     */
+    private DifferentialDrive diffDrive;
     
 
     /**
-      * subsystem base object for chassis
-      */
+     * subsystem base object for chassis
+     */
     public DriveTrain() {
-        this.leftMotor = new PWMSparkMax(Constants.PWM.leftDrive);
-        this.rightMotor = new PWMSparkMax(Constants.PWM.rightDrive);
+        try {
+            this.leftMotor = new PWMSparkMax(Constants.PWM.leftDrive);
+            System.out.println("Subsystem Log: Left motors are configured to port " + Constants.PWM.leftDrive);
+            
+        } 
+        catch(Exception e) {
+            System.out.println("Subsystem Log: Left motors failed to be configured to port " + Constants.PWM.leftDrive);
+            
+        }
+
+        try {
+            this.rightMotor = new PWMSparkMax(Constants.PWM.rightDrive);
+            System.out.println("Subsystem Log: Right motors are configured to port " + Constants.PWM.rightDrive);
+        }
+        catch(Exception e) {
+            System.out.println("Subsystem Log: Right motors failed to be configured to port " + Constants.PWM.rightDrive);
+        }
+
         this.diffDrive = new DifferentialDrive(this.leftMotor, this.rightMotor);
+        
     }
 
 
