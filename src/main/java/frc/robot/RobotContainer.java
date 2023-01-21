@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 
@@ -34,6 +35,8 @@ public class RobotContainer {
     XboxController driverController;
     JoystickButton button;
     JoystickButton button2;
+    POVButton upPOV;
+    POVButton downPOV;
     
     
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -44,6 +47,9 @@ public class RobotContainer {
         this.driverController = new XboxController(Constants.ControllerPort.driver);
         this.button = new JoystickButton(driverController, Constants.Button.armButton);
         this.button2 = new JoystickButton(driverController, Constants.Button.armButton2);
+        this.upPOV = new POVButton(driverController, 0);
+        this.downPOV = new POVButton(driverController, 180);
+
       
         this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driverController));
       
@@ -63,8 +69,8 @@ public class RobotContainer {
      */
     private void configureBindings() {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-        this.button.onTrue(new ArmUp(this.arm)).onFalse(new ArmStop(this.arm));
-        this.button2.onTrue(new ArmDown(this.arm)).onFalse(new ArmStop(this.arm));
+        this.upPOV.onTrue(new ArmUp(this.arm)).onFalse(new ArmStop(this.arm));
+        this.downPOV.onTrue(new ArmDown(this.arm)).onFalse(new ArmStop(this.arm));
     }
 
 

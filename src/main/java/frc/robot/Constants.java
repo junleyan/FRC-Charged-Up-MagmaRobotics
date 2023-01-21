@@ -66,9 +66,16 @@ public class Constants {
     public static class Subsystems{
 
 
-        public static class Arm{
+        public static class UpperArm{
 
-            public static final double speed = .3;
+            public static final double speed = 0.3;
+            public static final int port = 3;
+
+        }
+
+        public static class LowerArm{
+
+            public static final double speed = 0.3;
             public static final int port = 3;
 
         }
