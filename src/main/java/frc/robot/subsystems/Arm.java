@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -17,6 +18,8 @@ public class Arm extends SubsystemBase {
      */
     private Spark lowerArm;
     private Spark upperArm;
+    private PWMSparkMax lowerBanana;
+    private PWMSparkMax upperBanana;
   
 
     /**
@@ -38,6 +41,9 @@ public class Arm extends SubsystemBase {
         catch(Exception e) {
             System.out.println("Subsystem Log: Lower arm failed to be configured to port " + Constants.Subsystems.UpperArm.port);
         }   
+
+        this.lowerBanana = new PWMSparkMax(0);
+        this.upperBanana = new PWMSparkMax(1);
     }
 
 
@@ -47,6 +53,8 @@ public class Arm extends SubsystemBase {
     public void up() {
         this.lowerArm.set(-Constants.Subsystems.LowerArm.speed);
         this.upperArm.set(Constants.Subsystems.UpperArm.speed);
+        this.lowerBanana.set(Constants.Subsystems.LowerArm.speed);
+        this.upperBanana.set(-Constants.Subsystems.LowerArm.speed);
         System.out.println("Command Log: Arm is going up");
     }
 
@@ -57,6 +65,8 @@ public class Arm extends SubsystemBase {
     public void down(){
         this.lowerArm.set(Constants.Subsystems.LowerArm.speed);
         this.upperArm.set(-Constants.Subsystems.UpperArm.speed);
+        this.lowerBanana.set(-Constants.Subsystems.LowerArm.speed);
+        this.upperBanana.set(Constants.Subsystems.LowerArm.speed);
         System.out.println("Command Log: Arm is going down");
     }
 
@@ -68,6 +78,8 @@ public class Arm extends SubsystemBase {
     public void stop(){
         this.lowerArm.stopMotor();
         this.upperArm.stopMotor();
+        this.lowerBanana.stopMotor();
+        this.upperBanana.stopMotor();
         System.out.println("Command Log: Arm is stopped");
     }
 
