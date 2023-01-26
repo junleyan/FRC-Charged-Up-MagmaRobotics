@@ -17,8 +17,9 @@ public class Constants {
   
 
     public static final class PWM{
-        public static final int leftDrive = 13;
-        public static final int rightDrive = 12;
+        public static final int leftDrive = 6;
+        public static final int rightDrive = 5;
+
     }
 
 
@@ -41,7 +42,14 @@ public class Constants {
 
         public static class Button{
             public static final int armButton = 1;
-            public static final int armButton2 = 4;
+            public static final int armButton2 = 2;
+        }
+
+        public static class POVButton{
+            public static final int upButton = 0;
+            public static final int downButton = 180;
+            public static final int leftButton = 90;
+            public static final int rightButton = 270;
         }
 
     }
@@ -57,6 +65,16 @@ public class Constants {
         public static class LowerArm {
             public static final double speed = -0.4;
             public static final int port = 2;
+        }
+
+        public static class LowerSecondArm{
+            public static final double speed = -0.4;
+            public static final int port = 0;
+        }
+
+        public static class UpperSecondArm{
+            public static final double speed = 0.4;
+            public static final int port = 1;
         }
 
         public static class Tabs {

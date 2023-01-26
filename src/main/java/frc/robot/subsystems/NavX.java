@@ -5,7 +5,7 @@
 package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.SerialPort.Port;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class NavX extends SubsystemBase {
@@ -30,6 +30,13 @@ public class NavX extends SubsystemBase {
      */
     public double getYaw() {
         return this.navx.getYaw();
+    }
+
+    public double getPitch(){
+        return this.navx.getPitch();
+    }
+    public double getRoll(){
+        return this.navx.getRoll();
     }
 
   

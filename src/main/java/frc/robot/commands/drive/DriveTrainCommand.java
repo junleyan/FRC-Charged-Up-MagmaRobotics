@@ -1,8 +1,6 @@
 package frc.robot.commands.drive;
 
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
@@ -17,7 +15,6 @@ public class DriveTrainCommand extends CommandBase{
      */
     private final DriveTrain driveTrain;
     private final XboxController driveController;
-    private final ShuffleboardTab tab;
     private final NavX navx;
 
 
@@ -29,7 +26,6 @@ public class DriveTrainCommand extends CommandBase{
         this.driveTrain = driveTrain;
         this.driveController = driveController;
         this.navx = navx;
-        this.tab = Shuffleboard.getTab("Constants");
         addRequirements(driveTrain);
     }
 
@@ -49,7 +45,11 @@ public class DriveTrainCommand extends CommandBase{
         this.driveTrain.arcadeDriveWithXbox(
             this.driveController.getRawAxis(Constants.Control.XboxController.leftJoystick), 
             this.driveController.getRawAxis(Constants.Control.XboxController.rightJoystick));
-        this.tab.add("Angle", this.navx.getYaw());
+            System.out.println("Yaw:" + navx.getYaw());
+            System.out.println("Pitch:" + navx.getPitch());
+            System.out.println("Roll:" + navx.getRoll());
+
+        
     }
     
 

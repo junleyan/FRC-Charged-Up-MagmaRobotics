@@ -9,6 +9,9 @@ import frc.robot.commands.arm.ArmStop;
 import frc.robot.commands.arm.ArmUp;
 import frc.robot.commands.drive.DriveTrainCommand;
 import frc.robot.commands.drive.Movement;
+import frc.robot.commands.secondarm.SecondArmDown;
+import frc.robot.commands.secondarm.SecondArmStop;
+import frc.robot.commands.secondarm.SecondArmUp;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.NavX;
@@ -83,6 +86,8 @@ public class RobotContainer {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
         this.upPOV.onTrue(new ArmUp(this.arm)).onFalse(new ArmStop(this.arm));
         this.downPOV.onTrue(new ArmDown(this.arm)).onFalse(new ArmStop(this.arm));
+        this.upPOV.onTrue(new SecondArmUp(this.arm)).onFalse(new SecondArmStop(this.arm));
+        this.downPOV.onTrue(new SecondArmDown(this.arm)).onFalse(new SecondArmStop(this.arm));
     }
 
 

@@ -5,7 +5,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -16,10 +15,10 @@ public class Arm extends SubsystemBase {
     /**
      * an abstract representation of a physical robot arm
      */
-    private Spark lowerArm;
-    private Spark upperArm;
-    private PWMSparkMax lowerBanana;
-    private PWMSparkMax upperBanana;
+    private PWMSparkMax lowerArm;
+    private PWMSparkMax upperArm;
+    private PWMSparkMax lowerSecondArm;
+    private PWMSparkMax upperSecondArm;
   
 
     /**
@@ -27,7 +26,7 @@ public class Arm extends SubsystemBase {
      */
     public Arm() {
         try {
-            this.lowerArm = new Spark(Constants.Subsystems.LowerArm.port);
+            this.lowerArm = new PWMSparkMax(Constants.Subsystems.LowerArm.port);
             System.out.println("Subsystem Log: Lower arm is configured to port " + Constants.Subsystems.LowerArm.port);
         } 
         catch(Exception e) {
@@ -35,15 +34,15 @@ public class Arm extends SubsystemBase {
         }  
 
         try {
-            this.upperArm = new Spark(Constants.Subsystems.UpperArm.port);
+            this.upperArm = new PWMSparkMax(Constants.Subsystems.UpperArm.port);
             System.out.println("Subsystem Log: Lower arm is configured to port " + Constants.Subsystems.UpperArm.port);
         } 
         catch(Exception e) {
             System.out.println("Subsystem Log: Lower arm failed to be configured to port " + Constants.Subsystems.UpperArm.port);
         }   
 
-        this.lowerBanana = new PWMSparkMax(0);
-        this.upperBanana = new PWMSparkMax(1);
+        this.lowerSecondArm = new PWMSparkMax(Constants.Subsystems.LowerSecondArm.port);
+        this.upperSecondArm = new PWMSparkMax(Constants.Subsystems.UpperSecondArm.port);
     }
 
 
@@ -51,10 +50,10 @@ public class Arm extends SubsystemBase {
      * arm goes up by setting power on the arm motor
      */
     public void up() {
-        this.lowerArm.set(-Constants.Subsystems.LowerArm.speed);
+        this.lowerArm.set(Constants.Subsystems.LowerArm.speed);
         this.upperArm.set(Constants.Subsystems.UpperArm.speed);
-        this.lowerBanana.set(Constants.Subsystems.LowerArm.speed);
-        this.upperBanana.set(-Constants.Subsystems.LowerArm.speed);
+        this.lowerSecondArm.set(Constants.Subsystems.LowerSecondArm.speed);
+        this.upperSecondArm.set(Constants.Subsystems.UpperSecondArm.speed);
         System.out.println("Command Log: Arm is going up");
     }
 
@@ -65,8 +64,8 @@ public class Arm extends SubsystemBase {
     public void down(){
         this.lowerArm.set(Constants.Subsystems.LowerArm.speed);
         this.upperArm.set(-Constants.Subsystems.UpperArm.speed);
-        this.lowerBanana.set(-Constants.Subsystems.LowerArm.speed);
-        this.upperBanana.set(Constants.Subsystems.LowerArm.speed);
+        this.lowerSecondArm.set(-Constants.Subsystems.LowerArm.speed);
+        this.upperSecondArm.set(Constants.Subsystems.LowerArm.speed);
         System.out.println("Command Log: Arm is going down");
     }
 
@@ -78,8 +77,8 @@ public class Arm extends SubsystemBase {
     public void stop(){
         this.lowerArm.stopMotor();
         this.upperArm.stopMotor();
-        this.lowerBanana.stopMotor();
-        this.upperBanana.stopMotor();
+        this.lowerSecondArm.stopMotor();
+        this.upperSecondArm.stopMotor();
         System.out.println("Command Log: Arm is stopped");
     }
 
