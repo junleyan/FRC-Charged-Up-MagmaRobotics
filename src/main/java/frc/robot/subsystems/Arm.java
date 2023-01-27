@@ -25,24 +25,17 @@ public class Arm extends SubsystemBase {
      * subsystem base object for arm
      */
     public Arm() {
-        try {
-            this.lowerArm = new PWMSparkMax(Constants.Subsystems.LowerArm.port);
-            System.out.println("Subsystem Log: Lower arm is configured to port " + Constants.Subsystems.LowerArm.port);
-        } 
-        catch(Exception e) {
-            System.out.println("Subsystem Log: Lower arm failed to be configured to port " + Constants.Subsystems.LowerArm.port);
-        }  
+        this.lowerArm = new PWMSparkMax(Constants.Subsystems.LowerArm.port);
+        System.out.println("Subsystem Log: Lower arm is configured to port " + Constants.Subsystems.LowerArm.port);
 
-        try {
-            this.upperArm = new PWMSparkMax(Constants.Subsystems.UpperArm.port);
-            System.out.println("Subsystem Log: Lower arm is configured to port " + Constants.Subsystems.UpperArm.port);
-        } 
-        catch(Exception e) {
-            System.out.println("Subsystem Log: Lower arm failed to be configured to port " + Constants.Subsystems.UpperArm.port);
-        }   
+        this.upperArm = new PWMSparkMax(Constants.Subsystems.UpperArm.port);
+        System.out.println("Subsystem Log: Upper arm is configured to port " + Constants.Subsystems.UpperArm.port);
 
         this.lowerSecondArm = new PWMSparkMax(Constants.Subsystems.LowerSecondArm.port);
+        System.out.println("Subsystem Log: Lower  second arm is configured to port " + Constants.Subsystems.LowerSecondArm.port);
+
         this.upperSecondArm = new PWMSparkMax(Constants.Subsystems.UpperSecondArm.port);
+        System.out.println("Subsystem Log: Upper second arm is configured to port " + Constants.Subsystems.UpperSecondArm.port);
     }
 
 
@@ -50,11 +43,19 @@ public class Arm extends SubsystemBase {
      * arm goes up by setting power on the arm motor
      */
     public void up() {
-        this.lowerArm.set(Constants.Subsystems.LowerArm.speed);
+        this.lowerArm.set(-Constants.Subsystems.LowerArm.speed);
         this.upperArm.set(Constants.Subsystems.UpperArm.speed);
-        this.lowerSecondArm.set(Constants.Subsystems.LowerSecondArm.speed);
-        this.upperSecondArm.set(Constants.Subsystems.UpperSecondArm.speed);
         System.out.println("Command Log: Arm is going up");
+    }
+
+
+    /**
+     * second arm goes up by setting power on the arm motor
+     */
+    public void upSecond() {
+        this.lowerSecondArm.set(-Constants.Subsystems.LowerSecondArm.speed);
+        this.upperSecondArm.set(Constants.Subsystems.UpperSecondArm.speed);
+        System.out.println("Command Log: Second arm is going up");
     }
 
 
@@ -64,9 +65,17 @@ public class Arm extends SubsystemBase {
     public void down(){
         this.lowerArm.set(Constants.Subsystems.LowerArm.speed);
         this.upperArm.set(-Constants.Subsystems.UpperArm.speed);
-        this.lowerSecondArm.set(-Constants.Subsystems.LowerArm.speed);
-        this.upperSecondArm.set(Constants.Subsystems.LowerArm.speed);
         System.out.println("Command Log: Arm is going down");
+    }
+
+
+     /**
+     * second arm goes down by setting power on the arm motor
+     */
+    public void downSecond() {
+        this.lowerSecondArm.set(Constants.Subsystems.LowerSecondArm.speed);
+        this.upperSecondArm.set(-Constants.Subsystems.UpperSecondArm.speed);
+        System.out.println("Command Log: Second arm is going up");
     }
 
 
@@ -77,9 +86,18 @@ public class Arm extends SubsystemBase {
     public void stop(){
         this.lowerArm.stopMotor();
         this.upperArm.stopMotor();
+        System.out.println("Command Log: Arm is stopped");
+    }
+
+
+    /**
+     * calls stopMotor method within {@link edu.wpi.first.wpilibj.drive.DifferentialDrive}
+     * to stop motors
+     */
+    public void stopSecond(){
         this.lowerSecondArm.stopMotor();
         this.upperSecondArm.stopMotor();
-        System.out.println("Command Log: Arm is stopped");
+        System.out.println("Command Log: Second arm is stopped");
     }
 
   
