@@ -32,7 +32,7 @@ public class SecondArmStop extends CommandBase{
      */
     @Override
     public void execute(){
-        this.arm.stop();
+        this.arm.stopSecond();
     }
 
 

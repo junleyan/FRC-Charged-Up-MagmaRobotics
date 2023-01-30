@@ -31,9 +31,18 @@ public class NavX extends SubsystemBase {
         return this.navx.getYaw();
     }
 
+
+    /**
+     * @return returns the pitch of the NavX 
+     */
     public double getPitch(){
         return this.navx.getPitch();
     }
+
+
+    /**
+     * @return returns the roll of the NavX 
+     */
     public double getRoll(){
         return this.navx.getRoll();
     }

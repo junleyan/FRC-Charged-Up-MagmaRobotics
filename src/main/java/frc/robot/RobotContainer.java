@@ -15,7 +15,6 @@ import frc.robot.commands.secondarm.SecondArmUp;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.NavX;
-import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -32,14 +31,11 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
 
-
+    
     // The robot's subsystems and commands are defined here... 
     DriveTrain driveTrain;
     Arm arm;
     NavX navx; 
-
-
-    GenericEntry entry;
 
     XboxController driverController;
     JoystickButton button;
@@ -53,16 +49,12 @@ public class RobotContainer {
         this.navx = new NavX();
         this.driveTrain = new DriveTrain();
         this.arm = new Arm();
-        
-
-
 
         this.driverController = new XboxController(Constants.Control.ControllerPort.driver);
         this.button = new JoystickButton(driverController, Constants.Control.Button.armButton);
         this.button2 = new JoystickButton(driverController, Constants.Control.Button.armButton2);
-        this.upPOV = new POVButton(driverController, 0);
-        this.downPOV = new POVButton(driverController, 180);
-
+        this.upPOV = new POVButton(driverController, Constants.Control.POVButton.upButton);
+        this.downPOV = new POVButton(driverController, Constants.Control.POVButton.downButton);
       
         this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
       
