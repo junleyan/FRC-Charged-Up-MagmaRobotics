@@ -15,7 +15,6 @@ public class NavX extends SubsystemBase {
      * an abstract representation of a physical NavX
      */
     private AHRS navx;
-  
 
     /**
      * subsystem base object for NavX
@@ -39,5 +38,7 @@ public class NavX extends SubsystemBase {
         return this.navx.getRoll();
     }
 
-  
+    public void calibrate(){
+        calibrate();
+    }
 }
