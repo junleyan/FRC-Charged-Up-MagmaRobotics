@@ -32,7 +32,7 @@ public class SecondArmDown extends CommandBase{
      */
     @Override
     public void execute(){
-        this.arm.downSecond();
+        this.arm.upperArmDown();
     }
 
 

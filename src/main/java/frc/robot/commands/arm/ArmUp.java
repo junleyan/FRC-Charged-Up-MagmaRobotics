@@ -32,7 +32,7 @@ public class ArmUp extends CommandBase{
      */
     @Override
     public void execute(){
-        this.arm.up();
+        this.arm.lowerArmUp();
     }
 
 
