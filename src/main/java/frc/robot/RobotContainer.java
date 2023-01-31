@@ -74,10 +74,11 @@ public class RobotContainer {
      */
     private void configureBindings() {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-        this.upPOV.onTrue(new ArmUp(this.arm)).onFalse(new ArmStop(this.arm));
-        this.downPOV.onTrue(new ArmDown(this.arm)).onFalse(new ArmStop(this.arm));
-        this.upPOV.onTrue(new SecondArmUp(this.arm)).onFalse(new SecondArmStop(this.arm));
-        this.downPOV.onTrue(new SecondArmDown(this.arm)).onFalse(new SecondArmStop(this.arm));
+        this.upPOV.onTrue(new ArmDown(this.arm)).onFalse(new ArmStop(this.arm));
+        this.downPOV.onTrue(new ArmUp(this.arm)).onFalse(new ArmStop(this.arm));
+        this.button.onTrue(new SecondArmDown(this.arm)).onFalse(new SecondArmStop(this.arm));
+        this.button2.onTrue(new SecondArmUp(this.arm)).onFalse(new SecondArmStop(this.arm));
+
     }
 
 

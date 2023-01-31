@@ -19,6 +19,7 @@ public class Arm extends SubsystemBase {
     private PWMSparkMax upperArm;
     private PWMSparkMax lowerSecondArm;
     private PWMSparkMax upperSecondArm;
+
   
 
     /**
@@ -43,7 +44,7 @@ public class Arm extends SubsystemBase {
      * arm goes up by setting power on the arm motor
      */
     public void up() {
-        this.lowerArm.set(-Constants.Subsystems.LowerArm.speed);
+        this.lowerArm.set(Constants.Subsystems.LowerArm.speed);
         this.upperArm.set(Constants.Subsystems.UpperArm.speed);
         System.out.println("Command Log: Arm is going up");
     }
@@ -63,7 +64,7 @@ public class Arm extends SubsystemBase {
      * arm goes down by setting power on the arm motor
      */
     public void down(){
-        this.lowerArm.set(Constants.Subsystems.LowerArm.speed);
+        this.lowerArm.set(-Constants.Subsystems.LowerArm.speed);
         this.upperArm.set(-Constants.Subsystems.UpperArm.speed);
         System.out.println("Command Log: Arm is going down");
     }

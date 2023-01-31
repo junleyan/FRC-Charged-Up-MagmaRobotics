@@ -63,12 +63,12 @@ public class Constants {
         }
 
         public static class LowerArm {
-            public static final double speed = -0.4;
+            public static final double speed = 0.4;
             public static final int port = 2;
         }
 
         public static class LowerSecondArm{
-            public static final double speed = -0.4;
+            public static final double speed = 0.4;
             public static final int port = 0;
         }
 
