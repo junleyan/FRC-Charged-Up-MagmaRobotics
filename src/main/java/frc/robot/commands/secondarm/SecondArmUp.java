@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
 
-public class SecondArmUp extends CommandBase{
+public class SecondArmUp extends CommandBase {
 
 
     /**
@@ -16,7 +16,7 @@ public class SecondArmUp extends CommandBase{
     /**
      * @param arm an instance of {@link frc.robot.subsystems.Arm}
      */
-    public SecondArmUp(Arm arm){
+    public SecondArmUp(Arm arm) {
         this.arm = arm;
         addRequirements(arm);
     }
@@ -31,7 +31,7 @@ public class SecondArmUp extends CommandBase{
      * method that's being executed
      */
     @Override
-    public void execute(){
+    public void execute() {
         this.arm.upperArmUp();
     }
 

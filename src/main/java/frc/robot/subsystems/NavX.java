@@ -8,6 +8,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+
 public class NavX extends SubsystemBase {
 
 
@@ -16,6 +17,7 @@ public class NavX extends SubsystemBase {
      */
     private AHRS navx;
 
+    
     /**
      * subsystem base object for NavX
      */
@@ -47,7 +49,10 @@ public class NavX extends SubsystemBase {
         return this.navx.getRoll();
     }
 
-    public void calibrate(){
-        calibrate();
+
+    public void calibrate() {
+        this.navx.calibrate();
     }
+
+
 }

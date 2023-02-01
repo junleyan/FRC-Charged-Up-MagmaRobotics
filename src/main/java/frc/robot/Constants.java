@@ -14,18 +14,11 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public class Constants {
-  
-
-    public static final class PWM{
-        public static final int leftDrive = 6;
-        public static final int rightDrive = 5;
-
-    }
 
 
-    public static class Control{
+    public static class Control {
 
-        public static class ControllerPort{
+        public static class ControllerPort {
             public static final int driver = 0;
         }
 
@@ -40,16 +33,16 @@ public class Constants {
             public static final int rightJoystick = 4;
         }
 
-        public static class Button{
+        public static class Button {
             public static final int armButton = 1;
             public static final int armButton2 = 2;
         }
 
-        public static class POVButton{
-            public static final int upButton = 0;
-            public static final int downButton = 180;
-            public static final int leftButton = 90;
-            public static final int rightButton = 270;
+        public static class POVButton {
+            public static final int UP = 0;
+            public static final int DOWN = 180;
+            public static final int LEFT = 90;
+            public static final int RIGHT = 270;
         }
 
     }
@@ -57,24 +50,35 @@ public class Constants {
 
     public static class Subsystems{
 
-        public static class UpperArm {
-            public static final double speed = 0.4;
-            public static final int port = 3;
+        public static final class DriveTrain {
+            public static final int leftDrive = 6;
+            public static final int rightDrive = 5;
+    
         }
 
         public static class LowerArm {
-            public static final double speed = 0.4;
-            public static final int port = 2;
+            public static final double POWER = 0.4;
+            public static final int PORT = 3;
         }
 
-        public static class LowerSecondArm{
-            public static final double speed = 0.4;
-            public static final int port = 0;
+        public static class LowerArm2 {
+            public static final double POWER = 0.4;
+            public static final int PORT = 2;
         }
 
-        public static class UpperSecondArm{
-            public static final double speed = 0.4;
-            public static final int port = 1;
+        public static class UpperArm {
+            public static final double POWER = 0.4;
+            public static final int PORT = 0;
+        }
+
+        public static class UpperArm2 {
+            public static final double POWER = 0.4;
+            public static final int PORT = 1;
+        }
+
+        public static class Claw {
+            public static final double POWER = 0.5;
+            public static final int PORT = 4;
         }
 
         public static class Tabs {

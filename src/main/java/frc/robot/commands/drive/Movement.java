@@ -45,7 +45,7 @@ public class Movement extends CommandBase {
     // called once after isFinished returns true
     // drive train is stopped
     protected void end() {
-        this.driveTrain.stopMotor();
+        this.driveTrain.stop();
     }
 
 

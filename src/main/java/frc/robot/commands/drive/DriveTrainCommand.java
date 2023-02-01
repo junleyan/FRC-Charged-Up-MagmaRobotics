@@ -7,7 +7,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.NavX;
 
 
-public class DriveTrainCommand extends CommandBase{
+public class DriveTrainCommand extends CommandBase {
 
 
     /**
@@ -44,19 +44,7 @@ public class DriveTrainCommand extends CommandBase{
     public void execute() {
         this.driveTrain.arcadeDriveWithXbox(
             this.driveController.getRawAxis(Constants.Control.XboxController.leftJoystick), 
-            this.driveController.getRawAxis(Constants.Control.XboxController.rightJoystick));
-            //System.out.println("Yaw:" + navx.getYaw());
-            //System.out.println("Pitch:" + navx.getPitch());
-            System.out.println("Roll:" + navx.getRoll());
-            if (navx.getRoll() > 30){
-                System.out.println("Autobalance X-axis");
-            }
-            if (navx.getPitch() > 30){
-                System.out.println("Autobalance Y-axis");
-            }
-
-
-        
+            this.driveController.getRawAxis(Constants.Control.XboxController.rightJoystick));     
     }
     
 

@@ -7,14 +7,19 @@ package frc.robot;
 import frc.robot.commands.arm.ArmDown;
 import frc.robot.commands.arm.ArmStop;
 import frc.robot.commands.arm.ArmUp;
+import frc.robot.commands.claw.ClawClose;
+import frc.robot.commands.claw.ClawOpen;
 import frc.robot.commands.drive.DriveTrainCommand;
 import frc.robot.commands.drive.Movement;
 import frc.robot.commands.secondarm.SecondArmDown;
 import frc.robot.commands.secondarm.SecondArmStop;
 import frc.robot.commands.secondarm.SecondArmUp;
+
 import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.NavX;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -35,13 +40,12 @@ public class RobotContainer {
     // The robot's subsystems and commands are defined here... 
     DriveTrain driveTrain;
     Arm arm;
+    Claw claw;
     NavX navx; 
 
     XboxController driverController;
-    JoystickButton button;
-    JoystickButton button2;
-    POVButton upPOV;
-    POVButton downPOV;
+    JoystickButton buttonA, buttonB, buttonC, buttonD;
+    POVButton upPOV, downPOV;
     
     
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -51,10 +55,12 @@ public class RobotContainer {
         this.arm = new Arm();
 
         this.driverController = new XboxController(Constants.Control.ControllerPort.driver);
-        this.button = new JoystickButton(driverController, Constants.Control.Button.armButton);
-        this.button2 = new JoystickButton(driverController, Constants.Control.Button.armButton2);
-        this.upPOV = new POVButton(driverController, Constants.Control.POVButton.upButton);
-        this.downPOV = new POVButton(driverController, Constants.Control.POVButton.downButton);
+        this.buttonA = new JoystickButton(driverController, XboxController.Button.kA.value);
+        this.buttonB = new JoystickButton(driverController, XboxController.Button.kB.value);
+        this.buttonC = new JoystickButton(driverController, XboxController.Button.kX.value);
+        this.buttonD = new JoystickButton(driverController, XboxController.Button.kX.value);
+        this.upPOV = new POVButton(driverController, Constants.Control.POVButton.UP);
+        this.downPOV = new POVButton(driverController, Constants.Control.POVButton.DOWN);
       
         this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
       
@@ -76,9 +82,10 @@ public class RobotContainer {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
         this.upPOV.onTrue(new ArmDown(this.arm)).onFalse(new ArmStop(this.arm));
         this.downPOV.onTrue(new ArmUp(this.arm)).onFalse(new ArmStop(this.arm));
-        this.button.onTrue(new SecondArmDown(this.arm)).onFalse(new SecondArmStop(this.arm));
-        this.button2.onTrue(new SecondArmUp(this.arm)).onFalse(new SecondArmStop(this.arm));
-
+        this.buttonA.onTrue(new SecondArmDown(this.arm)).onFalse(new SecondArmStop(this.arm));
+        this.buttonB.onTrue(new SecondArmUp(this.arm)).onFalse(new SecondArmStop(this.arm));
+        this.buttonC.onTrue(new ClawOpen(this.claw)).onFalse(new ClawClose(this.claw));
+        this.buttonD.onTrue(new ClawClose(this.claw)).onFalse(new ClawClose(this.claw));
     }
 
 
