@@ -4,9 +4,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.NavX;
 
 
-public class DriveTrainCommand extends CommandBase{
+public class DriveTrainCommand extends CommandBase {
 
 
     /**
@@ -14,15 +15,17 @@ public class DriveTrainCommand extends CommandBase{
      */
     private final DriveTrain driveTrain;
     private final XboxController driveController;
+    private final NavX navx;
 
 
     /**
      * @param driveTrain an instance of {@link frc.robot.subsystems.DriveTrain}
      * @param driveController an instance of {@link edu.wpi.first.wpilibj.XboxController}
      */
-    public DriveTrainCommand(DriveTrain driveTrain, XboxController driveController){
+    public DriveTrainCommand(DriveTrain driveTrain, XboxController driveController, NavX navx){
         this.driveTrain = driveTrain;
         this.driveController = driveController;
+        this.navx = navx;
         addRequirements(driveTrain);
     }
 
@@ -40,9 +43,10 @@ public class DriveTrainCommand extends CommandBase{
     @Override
     public void execute() {
         this.driveTrain.arcadeDriveWithXbox(
-            this.driveController.getRawAxis(Constants.JoyStickAxis.XboxController.leftJoystick), 
-            this.driveController.getRawAxis(Constants.JoyStickAxis.XboxController.rightJoystick));
+            this.driveController.getRawAxis(Constants.Control.XboxController.leftJoystick), 
+            this.driveController.getRawAxis(Constants.Control.XboxController.rightJoystick));     
     }
+    
 
 
     @Override

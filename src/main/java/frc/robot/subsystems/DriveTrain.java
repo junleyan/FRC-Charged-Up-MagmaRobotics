@@ -29,26 +29,13 @@ public class DriveTrain extends SubsystemBase {
      * subsystem base object for chassis
      */
     public DriveTrain() {
-        try {
-            this.leftMotor = new PWMSparkMax(Constants.PWM.leftDrive);
-            System.out.println("Subsystem Log: Left motors are configured to port " + Constants.PWM.leftDrive);
+        this.leftMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.leftDrive);
+        System.out.println("Subsystem Log: Left motors are configured to port " + Constants.Subsystems.DriveTrain.leftDrive);
             
-        } 
-        catch(Exception e) {
-            System.out.println("Subsystem Log: Left motors failed to be configured to port " + Constants.PWM.leftDrive);
-            
-        }
-
-        try {
-            this.rightMotor = new PWMSparkMax(Constants.PWM.rightDrive);
-            System.out.println("Subsystem Log: Right motors are configured to port " + Constants.PWM.rightDrive);
-        }
-        catch(Exception e) {
-            System.out.println("Subsystem Log: Right motors failed to be configured to port " + Constants.PWM.rightDrive);
-        }
+        this.rightMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.rightDrive);
+        System.out.println("Subsystem Log: Right motors are configured to port " + Constants.Subsystems.DriveTrain.rightDrive);
 
         this.diffDrive = new DifferentialDrive(this.leftMotor, this.rightMotor);
-        
     }
 
 
@@ -56,7 +43,7 @@ public class DriveTrain extends SubsystemBase {
      * calls stopMotor method within {@link edu.wpi.first.wpilibj.drive.DifferentialDrive}
      * to stop motors
      */
-    public void stopMotor() {
+    public void stop() {
         this.diffDrive.stopMotor();
     }
 
