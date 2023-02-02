@@ -9,6 +9,8 @@ import frc.robot.commands.arm.ArmStop;
 import frc.robot.commands.arm.ArmUp;
 import frc.robot.commands.claw.ClawClose;
 import frc.robot.commands.claw.ClawOpen;
+import frc.robot.commands.claw.ClawStop;
+import frc.robot.commands.drive.AutoBalance;
 import frc.robot.commands.drive.DriveTrainCommand;
 import frc.robot.commands.drive.Movement;
 import frc.robot.commands.secondarm.SecondArmDown;
@@ -53,12 +55,13 @@ public class RobotContainer {
         this.navx = new NavX();
         this.driveTrain = new DriveTrain();
         this.arm = new Arm();
+        this.claw = new Claw();
 
         this.driverController = new XboxController(Constants.Control.ControllerPort.driver);
-        this.buttonA = new JoystickButton(driverController, XboxController.Button.kA.value);
-        this.buttonB = new JoystickButton(driverController, XboxController.Button.kB.value);
-        this.buttonC = new JoystickButton(driverController, XboxController.Button.kX.value);
-        this.buttonD = new JoystickButton(driverController, XboxController.Button.kX.value);
+        this.buttonA = new JoystickButton(driverController, Constants.Control.Button.kA);
+        this.buttonB = new JoystickButton(driverController, Constants.Control.Button.kB);
+        this.buttonC = new JoystickButton(driverController, Constants.Control.Button.kX);
+        this.buttonD = new JoystickButton(driverController, Constants.Control.Button.kY);
         this.upPOV = new POVButton(driverController, Constants.Control.POVButton.UP);
         this.downPOV = new POVButton(driverController, Constants.Control.POVButton.DOWN);
       
@@ -84,8 +87,8 @@ public class RobotContainer {
         this.downPOV.onTrue(new ArmUp(this.arm)).onFalse(new ArmStop(this.arm));
         this.buttonA.onTrue(new SecondArmDown(this.arm)).onFalse(new SecondArmStop(this.arm));
         this.buttonB.onTrue(new SecondArmUp(this.arm)).onFalse(new SecondArmStop(this.arm));
-        this.buttonC.onTrue(new ClawOpen(this.claw)).onFalse(new ClawClose(this.claw));
-        this.buttonD.onTrue(new ClawClose(this.claw)).onFalse(new ClawClose(this.claw));
+        this.buttonC.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
+        this.buttonD.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
     }
 
 
@@ -95,7 +98,8 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        return new Movement(this.driveTrain, 2000, 0.5);
+        return new AutoBalance(this.driveTrain, this.navx);
+        //return new Movement(this.driveTrain, 2000, 0.5);
     }
 
 

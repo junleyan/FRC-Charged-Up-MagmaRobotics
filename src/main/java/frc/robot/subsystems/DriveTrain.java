@@ -38,6 +38,11 @@ public class DriveTrain extends SubsystemBase {
         this.diffDrive = new DifferentialDrive(this.leftMotor, this.rightMotor);
     }
 
+    
+    public void set(double leftPower, double rightPower) {
+        this.diffDrive.tankDrive(leftPower, rightPower);
+    }
+
 
     /**
      * calls stopMotor method within {@link edu.wpi.first.wpilibj.drive.DifferentialDrive}

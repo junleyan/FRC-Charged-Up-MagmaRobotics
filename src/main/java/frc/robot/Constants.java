@@ -34,8 +34,10 @@ public class Constants {
         }
 
         public static class Button {
-            public static final int armButton = 1;
-            public static final int armButton2 = 2;
+            public static final int kA = 1;
+            public static final int kB = 2;
+            public static final int kX = 3;
+            public static final int kY = 4; 
         }
 
         public static class POVButton {

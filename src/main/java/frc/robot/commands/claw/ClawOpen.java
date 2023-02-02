@@ -3,11 +3,12 @@ package frc.robot.commands.claw;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Claw;
 
+
 public class ClawOpen extends CommandBase {
 
 
     private final Claw claw;
-
+    
 
     public ClawOpen(Claw claw) {
         this.claw = claw;
@@ -39,5 +40,5 @@ public class ClawOpen extends CommandBase {
         return false;
     }
 
-    
+
 }
