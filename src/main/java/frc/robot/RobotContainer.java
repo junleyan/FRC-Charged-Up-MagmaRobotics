@@ -57,13 +57,13 @@ public class RobotContainer {
         this.arm = new Arm();
         this.claw = new Claw();
 
-        this.driverController = new XboxController(Constants.Control.ControllerPort.driver);
+        this.driverController = new XboxController(Constants.Control.ControllerPort.kDRIVER);
         this.buttonA = new JoystickButton(driverController, Constants.Control.Button.kA);
         this.buttonB = new JoystickButton(driverController, Constants.Control.Button.kB);
         this.buttonC = new JoystickButton(driverController, Constants.Control.Button.kX);
         this.buttonD = new JoystickButton(driverController, Constants.Control.Button.kY);
-        this.upPOV = new POVButton(driverController, Constants.Control.POVButton.UP);
-        this.downPOV = new POVButton(driverController, Constants.Control.POVButton.DOWN);
+        this.upPOV = new POVButton(driverController, Constants.Control.POVButton.kUP);
+        this.downPOV = new POVButton(driverController, Constants.Control.POVButton.kDOWN);
       
         this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
       

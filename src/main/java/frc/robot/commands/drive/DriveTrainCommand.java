@@ -43,8 +43,8 @@ public class DriveTrainCommand extends CommandBase {
     public void execute() {
         System.out.println("Pitch: " + this.navx.getPitch());
         this.driveTrain.arcadeDriveWithXbox(
-            this.driveController.getRawAxis(Constants.Control.XboxController.leftJoystick), 
-            this.driveController.getRawAxis(Constants.Control.XboxController.rightJoystick));     
+            this.driveController.getRawAxis(Constants.Control.XboxController.kLEFT), 
+            this.driveController.getRawAxis(Constants.Control.XboxController.kRIGHT));     
     }
     
 

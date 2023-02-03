@@ -29,11 +29,11 @@ public class DriveTrain extends SubsystemBase {
      * subsystem base object for chassis
      */
     public DriveTrain() {
-        this.leftMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.leftDrive);
-        System.out.println("Subsystem Log: Left motors are configured to port " + Constants.Subsystems.DriveTrain.leftDrive);
+        this.leftMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.kLEFT);
+        System.out.println("Subsystem Log: Left motors are configured to port " + Constants.Subsystems.DriveTrain.kLEFT);
             
-        this.rightMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.rightDrive);
-        System.out.println("Subsystem Log: Right motors are configured to port " + Constants.Subsystems.DriveTrain.rightDrive);
+        this.rightMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.kRIGHT);
+        System.out.println("Subsystem Log: Right motors are configured to port " + Constants.Subsystems.DriveTrain.kRIGHT);
 
         this.diffDrive = new DifferentialDrive(this.leftMotor, this.rightMotor);
     }

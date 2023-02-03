@@ -12,8 +12,8 @@ public class Claw extends SubsystemBase {
 
     
     public Claw() {
-        this.claw = new PWMSparkMax(Constants.Subsystems.Claw.PORT);
-        System.out.println("Subsystem Log: Claw is configured to port " + Constants.Subsystems.Claw.PORT);
+        this.claw = new PWMSparkMax(Constants.Subsystems.Claw.kPORT);
+        System.out.println("Subsystem Log: Claw is configured to port " + Constants.Subsystems.Claw.kPORT);
     }
 
 
@@ -24,13 +24,13 @@ public class Claw extends SubsystemBase {
 
 
     public void open() {
-        this.claw.set(Constants.Subsystems.Claw.POWER);
+        this.claw.set(Constants.Subsystems.Claw.kPOWER);
         System.out.println("Command Log: Opened claw");
     }
 
 
     public void close() {
-        this.claw.set(-Constants.Subsystems.Claw.POWER);
+        this.claw.set(-Constants.Subsystems.Claw.kPOWER);
         System.out.println("Command Log: Closed claw");
     }
 

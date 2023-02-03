@@ -265,6 +265,58 @@
               "_glyph": 148,
               "_showGlyph": false
             }
+          },
+          "8,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/NavX Pitch",
+              "_title": "NavX Pitch",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "9,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Power",
+              "_title": "Power",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "8,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Balance Error",
+              "_title": "Balance Error",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "9,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Setpoint",
+              "_title": "Setpoint",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
           }
         }
       }
@@ -299,7 +351,7 @@
       }
     },
     {
-      "title": "Constants",
+      "title": "PID",
       "autoPopulate": false,
       "autoPopulatePrefix": "",
       "widgetPane": {
@@ -308,14 +360,37 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "titleType": 0,
-        "tiles": {}
+        "tiles": {
+          "3,0": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/Balance Error",
+              "_source1": "network_table:///SmartDashboard/Setpoint",
+              "_title": "SmartDashboard/Balance Error",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Graph/Visible time": 30.0,
+              "Graph/X-axis auto scrolling": true,
+              "Y-axis/Automatic bounds": true,
+              "Y-axis/Upper bound": 1.0,
+              "Y-axis/Lower bound": -1.0,
+              "Y-axis/Unit": "ul",
+              "Visible data/SmartDashboard/Balance Error": false,
+              "Visible data/SmartDashboard/Setpoint": false
+            }
+          }
+        }
       }
     }
   ],
   "windowGeometry": {
     "x": -5.599999904632568,
     "y": 0.800000011920929,
-    "width": 1148.0,
-    "height": 685.5999755859375
+    "width": 1232.0,
+    "height": 754.4000244140625
   }
 }

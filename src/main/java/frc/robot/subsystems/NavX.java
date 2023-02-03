@@ -8,7 +8,9 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.I2C.Port;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 
 public class NavX extends SubsystemBase {
@@ -19,12 +21,7 @@ public class NavX extends SubsystemBase {
      */
     private AHRS navx;
     private PIDController balancePID;
-
     public boolean calibrated = false; 
-
-    private double kP = 0.1;
-    private double kI = 0.01;
-    private double kD = 0.05;
 
     
     /**
@@ -32,16 +29,20 @@ public class NavX extends SubsystemBase {
      */
     public NavX() {
         this.navx = new AHRS(Port.kMXP);
-        this.balancePID = new PIDController(kP, kI, kD);
 
-        this.balancePID.setSetpoint(0);
-        this.balancePID.setIntegratorRange(-1, 1);
+        this.balancePID = new PIDController(Constants.PIDController.BalancePID.kP, 
+                                            Constants.PIDController.BalancePID.kI, 
+                                            Constants.PIDController.BalancePID.kD);
+        this.balancePID.setSetpoint(Constants.PIDController.BalancePID.kSetpoint);
     }
 
 
     public double getCalculatedBalancePID() {
-        System.out.println(this.balancePID.calculate(getPitch()));
-        return this.balancePID.calculate(getPitch());
+        double calculatedBalancePID = this.balancePID.calculate(getPitch());
+        SmartDashboard.putNumber("Power", calculatedBalancePID);
+        SmartDashboard.putNumber("Balance Error", Constants.PIDController.BalancePID.kSetpoint - getPitch());
+        SmartDashboard.putNumber("Setpoint", Constants.PIDController.BalancePID.kSetpoint);
+        return calculatedBalancePID;
     }
 
 
@@ -57,6 +58,7 @@ public class NavX extends SubsystemBase {
      * @return returns the pitch of the NavX 
      */
     public double getPitch(){
+        SmartDashboard.putNumber("NavX Pitch", this.navx.getPitch());
         return this.navx.getPitch();
     }
 
