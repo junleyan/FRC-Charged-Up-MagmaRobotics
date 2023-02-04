@@ -30,7 +30,7 @@ public class Constants {
 
         public static class XboxController {
             public static final int leftJoystick = 1;
-            public static final int rightJoystick = 4;
+            public static final int rightJoystick = 5;
         }
 
         public static class Button {

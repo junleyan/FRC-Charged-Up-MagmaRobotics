@@ -53,6 +53,7 @@ public class RobotContainer {
         this.navx = new NavX();
         this.driveTrain = new DriveTrain();
         this.arm = new Arm();
+        this.claw = new Claw();
 
         this.driverController = new XboxController(Constants.Control.ControllerPort.driver);
         this.buttonA = new JoystickButton(driverController, XboxController.Button.kA.value);
