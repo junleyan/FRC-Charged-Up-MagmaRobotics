@@ -39,6 +39,9 @@ public class NavX extends SubsystemBase {
 
     public double getCalculatedBalancePID() {
         double calculatedBalancePID = this.balancePID.calculate(getPitch());
+        if (calculatedBalancePID > 1) {
+            calculatedBalancePID = 1.0;
+        }
         SmartDashboard.putNumber("Power", calculatedBalancePID);
         SmartDashboard.putNumber("Balance Error", Constants.PIDController.BalancePID.kSetpoint - getPitch());
         SmartDashboard.putNumber("Setpoint", Constants.PIDController.BalancePID.kSetpoint);

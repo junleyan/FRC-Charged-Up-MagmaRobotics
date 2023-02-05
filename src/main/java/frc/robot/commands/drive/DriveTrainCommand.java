@@ -42,7 +42,7 @@ public class DriveTrainCommand extends CommandBase {
     @Override
     public void execute() {
         System.out.println("Pitch: " + this.navx.getPitch());
-        this.driveTrain.arcadeDriveWithXbox(
+        this.driveTrain.diffDrive(
             this.driveController.getRawAxis(Constants.Control.XboxController.kLEFT), 
             this.driveController.getRawAxis(Constants.Control.XboxController.kRIGHT));     
     }

@@ -30,7 +30,7 @@ public class Constants {
 
         public static class XboxController {
             public static final int kLEFT = 1;
-            public static final int kRIGHT = 4;
+            public static final int kRIGHT = 5;
         }
 
         public static class Button {
@@ -84,6 +84,7 @@ public class Constants {
         }
 
     }
+
 
 
     public static class PIDController {
