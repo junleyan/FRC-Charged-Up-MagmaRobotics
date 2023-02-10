@@ -85,7 +85,7 @@ public class DriveTrain extends SubsystemBase {
      * @param angle raw values of joystick used to control heading movement
      */
     public void arcadeDriveWithXbox(double position, double angle) {
-        this.diffDrive.arcadeDrive(-position, -angle);
+        this.diffDrive.arcadeDrive(position, angle);
     }
 
 

@@ -40,11 +40,12 @@ public class DriveTrainCommand extends CommandBase {
      * different driving styles
      */
     @Override
+
     public void execute() {
         System.out.println("Pitch: " + this.navx.getPitch());
         this.driveTrain.diffDrive(
-            this.driveController.getRawAxis(Constants.Control.XboxController.kLEFT), 
-            this.driveController.getRawAxis(Constants.Control.XboxController.kRIGHT));     
+            this.driveController.getRawAxis(Constants.Control.XboxController.kRIGHT), 
+            this.driveController.getRawAxis(Constants.Control.XboxController.kLEFT));     
     }
     
 

@@ -29,7 +29,7 @@ public class Movement extends CommandBase {
 
     // called repeatedly when this Command is scheduled to run
     public void execute() {
-        this.driveTrain.arcadeDriveWithJoystick(this.power, 0, 1);
+        this.driveTrain.diffDrive(this.power,0);
         System.out.println("executing auto");
     }
 
@@ -37,7 +37,6 @@ public class Movement extends CommandBase {
     // make this return true when this Command no longer needs to run execute()
     // checks if the time has passed the set duration
     public boolean isFinished() {
-        System.out.println("auto done");
         return System.currentTimeMillis() >= this.duration;
     }
 
@@ -45,6 +44,7 @@ public class Movement extends CommandBase {
     // called once after isFinished returns true
     // drive train is stopped
     protected void end() {
+        System.out.println("auto done");
         this.driveTrain.stop();
     }
 

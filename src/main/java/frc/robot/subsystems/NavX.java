@@ -28,7 +28,11 @@ public class NavX extends SubsystemBase {
      * subsystem base object for NavX
      */
     public NavX() {
-        this.navx = new AHRS(Port.kMXP);
+        try { 
+            this.navx = new AHRS(Port.kMXP);
+        } catch (Exception e) {
+            System.out.print("Unable to connect to NavX");
+        }
 
         this.balancePID = new PIDController(Constants.PIDController.BalancePID.kP, 
                                             Constants.PIDController.BalancePID.kI, 

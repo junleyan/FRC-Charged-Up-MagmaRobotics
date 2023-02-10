@@ -10,7 +10,6 @@ import frc.robot.commands.arm.ArmUp;
 import frc.robot.commands.claw.ClawClose;
 import frc.robot.commands.claw.ClawOpen;
 import frc.robot.commands.claw.ClawStop;
-import frc.robot.commands.drive.AutoBalance;
 import frc.robot.commands.drive.DriveTrainCommand;
 import frc.robot.commands.drive.Movement;
 import frc.robot.commands.secondarm.SecondArmDown;
@@ -21,7 +20,8 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.NavX;
-
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -48,6 +48,9 @@ public class RobotContainer {
     XboxController driverController;
     JoystickButton buttonA, buttonB, buttonC, buttonD;
     POVButton upPOV, downPOV;
+
+    UsbCamera camera_a; 
+    UsbCamera camera_b;
     
     
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -66,7 +69,14 @@ public class RobotContainer {
         this.downPOV = new POVButton(driverController, Constants.Control.POVButton.kDOWN);
       
         this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
-      
+        this.camera_a = CameraServer.startAutomaticCapture(0);
+        this.camera_b = CameraServer.startAutomaticCapture(1);
+
+        this.camera_a.setResolution(240, 140);
+        this.camera_b.setResolution(240, 140);
+        this.camera_a.setFPS(7);
+        this.camera_b.setFPS(7);
+        
         // Configure the trigger bindings
         this.configureBindings();
     }
@@ -98,7 +108,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        return new AutoBalance(this.driveTrain, this.navx);
+        return new Movement(this.driveTrain,100000,1);
         //return new Movement(this.driveTrain, 2000, 0.5);
     }
 
