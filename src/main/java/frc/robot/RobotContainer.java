@@ -4,9 +4,12 @@
 
 package frc.robot;
 
-import frc.robot.commands.arm.ArmDown;
-import frc.robot.commands.arm.ArmStop;
-import frc.robot.commands.arm.ArmUp;
+import frc.robot.commands.arm.LowerArmDown;
+import frc.robot.commands.arm.LowerArmStop;
+import frc.robot.commands.arm.LowerArmUp;
+import frc.robot.commands.arm.UpperArmDown;
+import frc.robot.commands.arm.UpperArmStop;
+import frc.robot.commands.arm.UpperArmUp;
 import frc.robot.commands.claw.ClawClose;
 import frc.robot.commands.claw.ClawOpen;
 import frc.robot.commands.claw.ClawStop;
@@ -46,8 +49,8 @@ public class RobotContainer {
     NavX navx; 
 
     XboxController driverController;
-    JoystickButton buttonA, buttonB, buttonC, buttonD;
-    POVButton upPOV, downPOV;
+    JoystickButton buttonA, buttonB, buttonX, buttonY;
+    POVButton upPOV, downPOV, leftPOV, rightPOV;
 
     UsbCamera camera_a; 
     UsbCamera camera_b;
@@ -63,10 +66,12 @@ public class RobotContainer {
         this.driverController = new XboxController(Constants.Control.ControllerPort.kDRIVER);
         this.buttonA = new JoystickButton(driverController, Constants.Control.Button.kA);
         this.buttonB = new JoystickButton(driverController, Constants.Control.Button.kB);
-        this.buttonC = new JoystickButton(driverController, Constants.Control.Button.kX);
-        this.buttonD = new JoystickButton(driverController, Constants.Control.Button.kY);
+        this.buttonX = new JoystickButton(driverController, Constants.Control.Button.kX);
+        this.buttonY = new JoystickButton(driverController, Constants.Control.Button.kY);
         this.upPOV = new POVButton(driverController, Constants.Control.POVButton.kUP);
         this.downPOV = new POVButton(driverController, Constants.Control.POVButton.kDOWN);
+        this.leftPOV = new POVButton(driverController, Constants.Control.POVButton.kLEFT);
+        this.rightPOV = new POVButton(driverController, Constants.Control.POVButton.kRIGHT);
       
         this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
         this.camera_a = CameraServer.startAutomaticCapture(0);
@@ -93,12 +98,14 @@ public class RobotContainer {
      */
     private void configureBindings() {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-        this.upPOV.onTrue(new ArmDown(this.arm)).onFalse(new ArmStop(this.arm));
-        this.downPOV.onTrue(new ArmUp(this.arm)).onFalse(new ArmStop(this.arm));
+        this.upPOV.onTrue(new UpperArmDown(this.arm)).onFalse(new UpperArmStop(this.arm));
+        this.downPOV.onTrue(new UpperArmUp(this.arm)).onFalse(new UpperArmStop(this.arm));
+        this.leftPOV.onTrue(new LowerArmUp(this.arm)).onFalse(new LowerArmStop(this.arm));
+        this.rightPOV.onTrue(new LowerArmDown(this.arm)).onFalse(new LowerArmStop(this.arm));
         this.buttonA.onTrue(new SecondArmDown(this.arm)).onFalse(new SecondArmStop(this.arm));
         this.buttonB.onTrue(new SecondArmUp(this.arm)).onFalse(new SecondArmStop(this.arm));
-        this.buttonC.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
-        this.buttonD.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
+        this.buttonX.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
+        this.buttonY.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
     }
 
 
@@ -108,7 +115,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        return new Movement(this.driveTrain,100000,1);
+        return new Movement(this.driveTrain,2000,0.5);
         //return new Movement(this.driveTrain, 2000, 0.5);
     }
 

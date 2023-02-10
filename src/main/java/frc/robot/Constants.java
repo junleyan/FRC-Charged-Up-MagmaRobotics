@@ -60,22 +60,22 @@ public class Constants {
         }
 
         public static class LowerArm {
-            public static final double kPOWER = 0.4;
+            public static final double kPOWER = 0.2;
             public static final int kPORT = 3;
         }
 
         public static class LowerArm2 {
-            public static final double kPOWER = 0.4;
+            public static final double kPOWER = 0.2;
             public static final int kPORT = 2;
         }
 
         public static class UpperArm {
-            public static final double kPOWER = 0.4;
+            public static final double kPOWER = 0.15;
             public static final int kPORT = 0;
         }
 
         public static class UpperArm2 {
-            public static final double kPOWER = 0.4;
+            public static final double kPOWER = 0.15;
             public static final int kPORT = 1;
         }
 
