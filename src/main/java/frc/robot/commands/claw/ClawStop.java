@@ -26,7 +26,7 @@ public class ClawStop extends CommandBase {
      */
     @Override
     public void execute() {
-        this.claw.close();
+        this.claw.stop();
     }
 
 
