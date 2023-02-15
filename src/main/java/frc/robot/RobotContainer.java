@@ -15,9 +15,6 @@ import frc.robot.commands.claw.ClawOpen;
 import frc.robot.commands.claw.ClawStop;
 import frc.robot.commands.drive.DriveTrainCommand;
 import frc.robot.commands.drive.Movement;
-import frc.robot.commands.secondarm.SecondArmDown;
-import frc.robot.commands.secondarm.SecondArmStop;
-import frc.robot.commands.secondarm.SecondArmUp;
 
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
