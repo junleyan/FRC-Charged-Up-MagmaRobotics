@@ -82,6 +82,8 @@ public class Constants {
         public static class Claw {
             public static final double kPOWER = 0.5;
             public static final int kPORT = 4;
+            public static final double kCloseLimit = 0;
+            public static final double kOpenLimit = 300; 
         }
 
     }

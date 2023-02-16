@@ -15,6 +15,7 @@ public class Claw extends SubsystemBase {
     private RelativeEncoder encoder; 
 
     
+    // make sure that the deviceID is same as the ID set on the motor controller
     public Claw() {
         this.claw = new CANSparkMax(9, MotorType.kBrushless);
         this.encoder = this.claw.getEncoder();
@@ -46,6 +47,14 @@ public class Claw extends SubsystemBase {
 
     public double getEncoder() {
         return this.encoder.getPosition();
+    }
+
+    public boolean isOpened() {
+        return this.getEncoder() >= Constants.Subsystems.Claw.kOpenLimit;
+    }
+
+    public boolean isClosed() {
+        return this.getEncoder() <= Constants.Subsystems.Claw.kCloseLimit;
     }
 
 
