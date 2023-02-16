@@ -19,6 +19,7 @@ public class DriveTrain extends SubsystemBase {
      * an abstract representation of a physical drive motor
      */
     private MotorController leftMotor, rightMotor;
+ 
     /**
      * an abstract representation of a drive base
      */
@@ -96,7 +97,7 @@ public class DriveTrain extends SubsystemBase {
      * @param rightJoystick raw values of the right joystick
      */
     public void diffDrive(double leftJoystick, double rightJoystick) {
-        this.diffDrive.tankDrive(leftJoystick, rightJoystick);
+        this.diffDrive.tankDrive(leftJoystick, -rightJoystick);
     }
 
 

@@ -32,14 +32,14 @@ public class Claw extends SubsystemBase {
 
 
     public void open() {
-        this.claw.set(Constants.Subsystems.Claw.kPOWER);
+        this.claw.set(-Constants.Subsystems.Claw.kPOWER);
         System.out.println("Command Log: Opened claw");
         SmartDashboard.putNumber("Encoder Value", this.getEncoder());
     }
 
 
     public void close() {
-        this.claw.set(-Constants.Subsystems.Claw.kPOWER);
+        this.claw.set(Constants.Subsystems.Claw.kPOWER);
         System.out.println("Command Log: Closed claw");
         SmartDashboard.putNumber("Encoder Value", this.getEncoder());
     }

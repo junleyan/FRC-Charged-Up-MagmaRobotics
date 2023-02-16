@@ -38,7 +38,9 @@ public class Constants {
             public static final int kA = 1;
             public static final int kB = 2;
             public static final int kX = 3;
-            public static final int kY = 4; 
+            public static final int kY = 4;
+            public static final int kRIGHT_BUMPER = 5;
+            public static final int kLEFT_BUMPER = 6;
         }
 
         public static class POVButton {
@@ -80,10 +82,15 @@ public class Constants {
         }
 
         public static class Claw {
-            public static final double kPOWER = 0.5;
+            public static final double kPOWER = 0.8;
             public static final int kPORT = 4;
             public static final double kCloseLimit = 0;
             public static final double kOpenLimit = 300; 
+        }
+
+        public static class ClawServo{
+            public static final double kPOWER = 0.5;
+            public static final int kPORT = 7;
         }
 
     }
