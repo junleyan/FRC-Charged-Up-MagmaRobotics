@@ -49,10 +49,12 @@ public class Claw extends SubsystemBase {
         return this.encoder.getPosition();
     }
 
+
     public boolean isOpened() {
         return this.getEncoder() >= Constants.Subsystems.Claw.kOpenLimit;
     }
 
+    
     public boolean isClosed() {
         return this.getEncoder() <= Constants.Subsystems.Claw.kCloseLimit;
     }
