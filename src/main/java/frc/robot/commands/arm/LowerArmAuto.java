@@ -1,21 +1,20 @@
-package frc.robot.commands.drive;
+package frc.robot.commands.arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Arm;
 
 
-public class Movement extends CommandBase {
+public class LowerArmAuto extends CommandBase {
 
 
-    private double power, duration;
-    private DriveTrain driveTrain;
+    private double duration;
+    private Arm arm;
 
 
-    public Movement(DriveTrain driveTrain, double duration, double power) {
-        this.driveTrain = driveTrain;
+    public LowerArmAuto(Arm arm, double duration) {
+        this.arm = arm;
         this.duration = duration;
-        this.power = power;
-        addRequirements(driveTrain);
+        addRequirements(arm);
     }
 
 
@@ -29,7 +28,7 @@ public class Movement extends CommandBase {
 
     // called repeatedly when this Command is scheduled to run
     public void execute() {
-        this.driveTrain.diffDrive(this.power,this.power);
+        this.arm.lowerArmUp();
         System.out.println("executing auto");
     }
 
@@ -45,7 +44,7 @@ public class Movement extends CommandBase {
     // drive train is stopped
     protected void end() {
         System.out.println("auto done");
-        this.driveTrain.stop();
+        this.arm.lowerArmStop();
     }
 
 

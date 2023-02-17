@@ -10,6 +10,8 @@ import frc.robot.commands.arm.LowerArmUp;
 import frc.robot.commands.arm.UpperArmDown;
 import frc.robot.commands.arm.UpperArmStop;
 import frc.robot.commands.arm.UpperArmUp;
+import frc.robot.commands.claw.ClawAutoClose;
+import frc.robot.commands.claw.ClawAutoOpen;
 import frc.robot.commands.claw.ClawClose;
 import frc.robot.commands.claw.ClawOpen;
 import frc.robot.commands.claw.ClawStop;
@@ -28,6 +30,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -120,9 +123,12 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        return new Movement(driveTrain, 1000, -1);
-        //return new Movement(this.driveTrain, 2000, 0.5);
-    }
+        return new SequentialCommandGroup(
+            new Movement(this.driveTrain, 1000, 1),
+            new ClawAutoOpen(this.claw),
+            new ClawAutoClose(this.claw)
+        );
+      }
 
 
 }

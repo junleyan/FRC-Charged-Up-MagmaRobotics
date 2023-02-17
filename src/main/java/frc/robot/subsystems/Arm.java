@@ -15,7 +15,7 @@ public class Arm extends SubsystemBase {
     /**
      * an abstract representation of a physical robot arm
      */
-    private PWMSparkMax lowerArm, lowerArm2, upperArm, upperArm2;
+    private PWMSparkMax lowerArm, lowerArm2, upperArm;
 
   
     /**
@@ -30,9 +30,6 @@ public class Arm extends SubsystemBase {
 
         this.upperArm = new PWMSparkMax(Constants.Subsystems.UpperArm.kPORT);
         System.out.println("Subsystem Log: Lower second arm is configured to port " + Constants.Subsystems.UpperArm.kPORT);
-
-        this.upperArm2 = new PWMSparkMax(Constants.Subsystems.UpperArm2.kPORT);
-        System.out.println("Subsystem Log: Upper second arm is configured to port " + Constants.Subsystems.UpperArm2.kPORT);
     }
 
 
@@ -40,8 +37,8 @@ public class Arm extends SubsystemBase {
      * arm goes up by setting power on the arm motor
      */
     public void lowerArmUp() {
-        this.lowerArm.set(Constants.Subsystems.LowerArm2.kPOWER);
-        this.lowerArm2.set(-Constants.Subsystems.LowerArm.kPOWER);
+        this.lowerArm.set(-Constants.Subsystems.LowerArm2.kPOWER);
+        this.lowerArm2.set(Constants.Subsystems.LowerArm.kPOWER);
         System.out.println("Command Log: Lower arm is going up");
     }
 
@@ -50,8 +47,8 @@ public class Arm extends SubsystemBase {
      * arm goes down by setting power on the arm motor
      */
     public void lowerArmDown() {
-        this.lowerArm.set(-Constants.Subsystems.LowerArm2.kPOWER);
-        this.lowerArm2.set(Constants.Subsystems.LowerArm.kPOWER);
+        this.lowerArm.set(Constants.Subsystems.LowerArm2.kPOWER);
+        this.lowerArm2.set(-Constants.Subsystems.LowerArm.kPOWER);
         System.out.println("Command Log: Lower arm is going down");
     }
 
@@ -72,7 +69,6 @@ public class Arm extends SubsystemBase {
      */
     public void upperArmUp() {
         this.upperArm.set(Constants.Subsystems.UpperArm.kPOWER);
-        this.upperArm2.set(Constants.Subsystems.UpperArm2.kPOWER);
         System.out.println("Command Log: Upper arm is going up");
     }
 
@@ -82,7 +78,6 @@ public class Arm extends SubsystemBase {
      */
     public void upperArmDown() {
         this.upperArm.set(-Constants.Subsystems.UpperArm.kPOWER);
-        this.upperArm2.set(-Constants.Subsystems.UpperArm2.kPOWER);
         System.out.println("Command Log: Upper arm is going up");
     }
 
@@ -93,7 +88,6 @@ public class Arm extends SubsystemBase {
      */
     public void upperArmStop() {
         this.upperArm.stopMotor();
-        this.upperArm2.stopMotor();
         System.out.println("Command Log: Upper arm is stopped");
     }
 

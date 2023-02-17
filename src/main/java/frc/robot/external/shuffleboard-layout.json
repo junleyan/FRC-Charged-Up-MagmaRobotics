@@ -378,9 +378,7 @@
               "Y-axis/Automatic bounds": true,
               "Y-axis/Upper bound": 1.0,
               "Y-axis/Lower bound": -1.0,
-              "Y-axis/Unit": "ul",
-              "Visible data/SmartDashboard/Balance Error": true,
-              "Visible data/SmartDashboard/Setpoint": true
+              "Y-axis/Unit": "ul"
             }
           },
           "4,1": {
@@ -399,8 +397,7 @@
               "Y-axis/Automatic bounds": true,
               "Y-axis/Upper bound": 1.0,
               "Y-axis/Lower bound": -1.0,
-              "Y-axis/Unit": "ul",
-              "Visible data/SmartDashboard/Power": true
+              "Y-axis/Unit": "ul"
             }
           }
         }

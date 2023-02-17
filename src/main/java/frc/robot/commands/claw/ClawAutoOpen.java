@@ -1,21 +1,19 @@
-package frc.robot.commands.drive;
+package frc.robot.commands.claw;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Claw;
 
 
-public class Movement extends CommandBase {
+public class ClawAutoOpen extends CommandBase {
 
 
-    private double power, duration;
-    private DriveTrain driveTrain;
+    private double duration;
+    private Claw claw;
 
 
-    public Movement(DriveTrain driveTrain, double duration, double power) {
-        this.driveTrain = driveTrain;
-        this.duration = duration;
-        this.power = power;
-        addRequirements(driveTrain);
+    public ClawAutoOpen(Claw claw) {
+        this.claw = claw;
+        addRequirements(claw);
     }
 
 
@@ -29,7 +27,7 @@ public class Movement extends CommandBase {
 
     // called repeatedly when this Command is scheduled to run
     public void execute() {
-        this.driveTrain.diffDrive(this.power,this.power);
+        this.claw.open();
         System.out.println("executing auto");
     }
 
@@ -43,9 +41,9 @@ public class Movement extends CommandBase {
 
     // called once after isFinished returns true
     // drive train is stopped
-    protected void end() {
+    protected boolean end() {
         System.out.println("auto done");
-        this.driveTrain.stop();
+        return this.claw.isOpened();
     }
 
 
