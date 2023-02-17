@@ -5,11 +5,12 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import java.lang.Math;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 public class DriveTrain extends SubsystemBase {
@@ -18,7 +19,7 @@ public class DriveTrain extends SubsystemBase {
     /**
      * an abstract representation of a physical drive motor
      */
-    private MotorController leftMotor, rightMotor;
+    private CANSparkMax leftMotor, rightMotor;
  
     /**
      * an abstract representation of a drive base
@@ -30,11 +31,11 @@ public class DriveTrain extends SubsystemBase {
      * subsystem base object for chassis
      */
     public DriveTrain() {
-        this.leftMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.kLEFT);
-        System.out.println("Subsystem Log: Left motors are configured to port " + Constants.Subsystems.DriveTrain.kLEFT);
+        this.leftMotor = new CANSparkMax(Constants.Subsystems.DriveTrain.kLEFT_ID, MotorType.kBrushless);
+        System.out.println("Subsystem Log: Left motors are configured to port " + Constants.Subsystems.DriveTrain.kLEFT_ID);
             
-        this.rightMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.kRIGHT);
-        System.out.println("Subsystem Log: Right motors are configured to port " + Constants.Subsystems.DriveTrain.kRIGHT);
+        this.rightMotor = new CANSparkMax(Constants.Subsystems.DriveTrain.kRIGHT_ID, MotorType.kBrushless);
+        System.out.println("Subsystem Log: Right motors are configured to port " + Constants.Subsystems.DriveTrain.kRIGHT_ID);
 
         this.diffDrive = new DifferentialDrive(this.leftMotor, this.rightMotor);
     }

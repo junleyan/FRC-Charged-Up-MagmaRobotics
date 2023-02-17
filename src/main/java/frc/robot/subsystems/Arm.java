@@ -4,7 +4,9 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -15,24 +17,24 @@ public class Arm extends SubsystemBase {
     /**
      * an abstract representation of a physical robot arm
      */
-    private PWMSparkMax lowerArm, lowerArm2, upperArm, upperArm2;
+    private CANSparkMax lowerArm, lowerArm2, upperArm, upperArm2;
 
   
     /**
      * subsystem base object for arm
      */
     public Arm() {
-        this.lowerArm = new PWMSparkMax(Constants.Subsystems.LowerArm2.kPORT);
-        System.out.println("Subsystem Log: Lower arm is configured to port " + Constants.Subsystems.LowerArm2.kPORT);
+        this.lowerArm = new CANSparkMax(Constants.Subsystems.LowerArm2.kID, MotorType.kBrushless);
+        System.out.println("Subsystem Log: Lower arm is configured to port " + Constants.Subsystems.LowerArm2.kID);
 
-        this.lowerArm2 = new PWMSparkMax(Constants.Subsystems.LowerArm.kPORT);
-        System.out.println("Subsystem Log: Upper arm is configured to port " + Constants.Subsystems.LowerArm.kPORT);
+        this.lowerArm2 = new CANSparkMax(Constants.Subsystems.LowerArm.kID, MotorType.kBrushless);
+        System.out.println("Subsystem Log: Upper arm is configured to port " + Constants.Subsystems.LowerArm.kID);
 
-        this.upperArm = new PWMSparkMax(Constants.Subsystems.UpperArm.kPORT);
-        System.out.println("Subsystem Log: Lower second arm is configured to port " + Constants.Subsystems.UpperArm.kPORT);
+        this.upperArm = new CANSparkMax(Constants.Subsystems.UpperArm.kID, MotorType.kBrushless);
+        System.out.println("Subsystem Log: Lower second arm is configured to port " + Constants.Subsystems.UpperArm.kID);
 
-        this.upperArm2 = new PWMSparkMax(Constants.Subsystems.UpperArm2.kPORT);
-        System.out.println("Subsystem Log: Upper second arm is configured to port " + Constants.Subsystems.UpperArm2.kPORT);
+        this.upperArm2 = new CANSparkMax(Constants.Subsystems.UpperArm2.kID, MotorType.kBrushless);
+        System.out.println("Subsystem Log: Upper second arm is configured to port " + Constants.Subsystems.UpperArm2.kID);
     }
 
 

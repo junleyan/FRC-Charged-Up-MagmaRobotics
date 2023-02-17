@@ -17,7 +17,7 @@ public class Claw extends SubsystemBase {
     
     // make sure that the deviceID is same as the ID set on the motor controller
     public Claw() {
-        this.claw = new CANSparkMax(9, MotorType.kBrushless);
+        this.claw = new CANSparkMax(Constants.Subsystems.Claw.kID, MotorType.kBrushless);
         this.encoder = this.claw.getEncoder();
         this.claw.restoreFactoryDefaults();
         System.out.println("Subsystem Log: Claw is configured to port 42");
