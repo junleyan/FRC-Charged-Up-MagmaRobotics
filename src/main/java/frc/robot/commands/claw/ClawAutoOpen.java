@@ -11,7 +11,7 @@ public class ClawAutoOpen extends CommandBase {
     private Claw claw;
 
 
-    public ClawAutoOpen(Claw claw) {
+    public ClawAutoOpen(Claw claw, double duration) {
         this.claw = claw;
         addRequirements(claw);
     }

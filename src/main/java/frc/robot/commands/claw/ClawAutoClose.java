@@ -11,8 +11,9 @@ public class ClawAutoClose extends CommandBase {
     private Claw claw;
 
 
-    public ClawAutoClose(Claw claw) {
+    public ClawAutoClose(Claw claw, double duration) {
         this.claw = claw;
+        this.duration = duration;
         addRequirements(claw);
     }
 

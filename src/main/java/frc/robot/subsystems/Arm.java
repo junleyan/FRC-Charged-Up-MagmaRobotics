@@ -37,8 +37,8 @@ public class Arm extends SubsystemBase {
      * arm goes up by setting power on the arm motor
      */
     public void lowerArmUp() {
-        this.lowerArm.set(-Constants.Subsystems.LowerArm2.kPOWER);
-        this.lowerArm2.set(Constants.Subsystems.LowerArm.kPOWER);
+        this.lowerArm.set(Constants.Subsystems.LowerArm2.kPOWER);
+        this.lowerArm2.set(-Constants.Subsystems.LowerArm.kPOWER);
         System.out.println("Command Log: Lower arm is going up");
     }
 
@@ -47,8 +47,8 @@ public class Arm extends SubsystemBase {
      * arm goes down by setting power on the arm motor
      */
     public void lowerArmDown() {
-        this.lowerArm.set(Constants.Subsystems.LowerArm2.kPOWER);
-        this.lowerArm2.set(-Constants.Subsystems.LowerArm.kPOWER);
+        this.lowerArm.set(-Constants.Subsystems.LowerArm2.kPOWER);
+        this.lowerArm2.set(Constants.Subsystems.LowerArm.kPOWER);
         System.out.println("Command Log: Lower arm is going down");
     }
 

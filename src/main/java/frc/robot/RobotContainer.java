@@ -4,9 +4,11 @@
 
 package frc.robot;
 
+import frc.robot.commands.arm.LowerArmAuto;
 import frc.robot.commands.arm.LowerArmDown;
 import frc.robot.commands.arm.LowerArmStop;
 import frc.robot.commands.arm.LowerArmUp;
+import frc.robot.commands.arm.UpperArmAuto;
 import frc.robot.commands.arm.UpperArmDown;
 import frc.robot.commands.arm.UpperArmStop;
 import frc.robot.commands.arm.UpperArmUp;
@@ -49,9 +51,9 @@ public class RobotContainer {
     // The robot's subsystems and commands are defined here... 
     DriveTrain driveTrain;
     Arm arm;
-    Claw claw;
     NavX navx;
-    ClawServo clawServo; 
+    ClawServo clawServo;
+    Claw claw;
 
     XboxController driverController;
     JoystickButton buttonA, buttonB, buttonX, buttonY, rightBumper, leftBumper;
@@ -66,8 +68,8 @@ public class RobotContainer {
         this.navx = new NavX();
         this.driveTrain = new DriveTrain();
         this.arm = new Arm();
-        this.claw = new Claw();
         this.clawServo = new ClawServo();
+        this.claw = new Claw();
 
         this.driverController = new XboxController(Constants.Control.ControllerPort.kDRIVER);
         this.buttonA = new JoystickButton(driverController, Constants.Control.Button.kA);
@@ -110,8 +112,6 @@ public class RobotContainer {
         this.downPOV.onTrue(new UpperArmUp(this.arm)).onFalse(new UpperArmStop(this.arm));
         this.leftPOV.onTrue(new LowerArmUp(this.arm)).onFalse(new LowerArmStop(this.arm));
         this.rightPOV.onTrue(new LowerArmDown(this.arm)).onFalse(new LowerArmStop(this.arm));
-        this.buttonX.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
-        this.buttonY.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
         this.rightBumper.onTrue(new ClawServoUp(this.clawServo));
         this.leftBumper.onTrue(new ClawServoDown(this.clawServo));
     }
@@ -125,8 +125,10 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         return new SequentialCommandGroup(
             new Movement(this.driveTrain, 1000, 1),
-            new ClawAutoOpen(this.claw),
-            new ClawAutoClose(this.claw)
+            new ClawAutoOpen(this.claw, 1000),
+            new ClawAutoClose(this.claw, 1000),
+            new LowerArmAuto(this.arm, 1000),
+            new UpperArmAuto(this.arm, 1000)
         );
       }
 
