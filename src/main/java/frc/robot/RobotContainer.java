@@ -4,39 +4,36 @@
 
 package frc.robot;
 
-import frc.robot.commands.arm.LowerArmAuto;
-import frc.robot.commands.arm.LowerArmDown;
-import frc.robot.commands.arm.LowerArmStop;
-import frc.robot.commands.arm.LowerArmUp;
-import frc.robot.commands.arm.UpperArmAuto;
-import frc.robot.commands.arm.UpperArmDown;
-import frc.robot.commands.arm.UpperArmStop;
-import frc.robot.commands.arm.UpperArmUp;
-import frc.robot.commands.claw.ClawAutoClose;
-import frc.robot.commands.claw.ClawAutoOpen;
-import frc.robot.commands.claw.ClawClose;
-import frc.robot.commands.claw.ClawOpen;
-import frc.robot.commands.claw.ClawStop;
-import frc.robot.commands.clawservo.ClawServoDown;
-import frc.robot.commands.clawservo.ClawServoUp;
-import frc.robot.commands.drive.AutoBalance;
-import frc.robot.commands.drive.DriveTrainCommand;
-import frc.robot.commands.drive.Movement;
-
-import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.NavX;
-import frc.robot.subsystems.Claw;
-import frc.robot.subsystems.ClawServo;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.arm.LowerArmDown;
+import frc.robot.commands.arm.LowerArmStop;
+import frc.robot.commands.arm.LowerArmUp;
+import frc.robot.commands.arm.UpperArmDown;
+import frc.robot.commands.arm.UpperArmStop;
+import frc.robot.commands.arm.UpperArmUp;
+import frc.robot.commands.claw.ClawClose;
+import frc.robot.commands.claw.ClawOpen;
+import frc.robot.commands.claw.ClawStop;
+import frc.robot.commands.clawservo.ClawServoDown;
+import frc.robot.commands.clawservo.ClawServoStop;
+import frc.robot.commands.clawservo.ClawServoUp;
+import frc.robot.commands.drive.AutoBalance;
+import frc.robot.commands.drive.DriveTrainCommand;
+import frc.robot.commands.drive.Movement;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Claw;
+import frc.robot.subsystems.ClawServo;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.NavX;
 
 
 /**
@@ -112,8 +109,10 @@ public class RobotContainer {
         this.downPOV.onTrue(new UpperArmUp(this.arm)).onFalse(new UpperArmStop(this.arm));
         this.leftPOV.onTrue(new LowerArmUp(this.arm)).onFalse(new LowerArmStop(this.arm));
         this.rightPOV.onTrue(new LowerArmDown(this.arm)).onFalse(new LowerArmStop(this.arm));
-        this.rightBumper.onTrue(new ClawServoUp(this.clawServo));
-        this.leftBumper.onTrue(new ClawServoDown(this.clawServo));
+        this.buttonX.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
+        this.buttonY.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
+        this.rightBumper.onTrue(new ClawServoUp(this.clawServo)).onFalse(new ClawServoStop(this.clawServo));
+        this.leftBumper.onTrue(new ClawServoDown(this.clawServo)).onFalse(new ClawServoStop(this.clawServo));
     }
 
 
@@ -124,12 +123,8 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         return new SequentialCommandGroup(
-            new Movement(this.driveTrain, 1000, 1),
-            new ClawAutoOpen(this.claw, 1000),
-            new ClawAutoClose(this.claw, 1000),
-            new LowerArmAuto(this.arm, 1000),
-            new UpperArmAuto(this.arm, 1000)
-        );
+            new Movement(this.driveTrain, 1500, 0.5),
+            new Movement(this.driveTrain, 3800, -0.5));
       }
 
 

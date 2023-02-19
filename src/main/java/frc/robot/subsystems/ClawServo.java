@@ -28,5 +28,9 @@ public class ClawServo extends SubsystemBase {
         System.out.println("Command Log: Closed claw");
     }
 
+    public void stop(){
+        this.clawServo.set(0);
+    }
+
 
 }

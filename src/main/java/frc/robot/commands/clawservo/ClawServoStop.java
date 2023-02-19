@@ -1,17 +1,18 @@
-package frc.robot.commands.claw;
+package frc.robot.commands.clawservo;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Claw;
-
-public class ClawClose extends CommandBase {
+import frc.robot.subsystems.ClawServo;
 
 
-    private final Claw claw;
+public class ClawServoStop extends CommandBase {
 
 
-    public ClawClose(Claw claw) {
-        this.claw = claw;
-        addRequirements(claw);
+    private final ClawServo clawServo;
+    
+
+    public ClawServoStop(ClawServo clawServo) {
+        this.clawServo = clawServo;
+        addRequirements(clawServo);
     }
 
 
@@ -25,7 +26,7 @@ public class ClawClose extends CommandBase {
      */
     @Override
     public void execute() {
-        this.claw.close();
+        this.clawServo.stop();
     }
 
 
@@ -39,5 +40,5 @@ public class ClawClose extends CommandBase {
         return false;
     }
 
-    
+
 }

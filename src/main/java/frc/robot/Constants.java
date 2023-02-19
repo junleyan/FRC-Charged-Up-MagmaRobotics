@@ -63,29 +63,34 @@ public class Constants {
 
         public static class LowerArm {
             public static final double kPOWER = 0.2;
-            public static final int kPORT = 2;
+            public static final int kPORT = 3;
         }
 
         public static class LowerArm2 {
             public static final double kPOWER = 0.2;
-            public static final int kPORT = 1;
+            public static final int kPORT = 2;
         }
 
         public static class UpperArm {
             public static final double kPOWER = 0.15;
             public static final int kPORT = 0;
         }
+        
+        public static class UpperArm2 {
+            public static final double kPOWER = 0.15;
+            public static final int kPORT = 1;
+        }
 
         public static class Claw {
             public static final double kPOWER = 0.8;
-            public static final int kPORT = 3;
+            public static final int kPORT = 4;
             public static final double kCloseLimit = 0;
             public static final double kOpenLimit = 300;
         }
 
         public static class ClawServo{
             public static final double kPOWER = 0.5;
-            public static final int kPORT = 4;
+            public static final int kPORT = 7;
         }
 
     }

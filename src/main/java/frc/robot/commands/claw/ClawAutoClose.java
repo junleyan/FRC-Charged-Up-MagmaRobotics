@@ -44,7 +44,7 @@ public class ClawAutoClose extends CommandBase {
     // drive train is stopped
     protected boolean end() {
         System.out.println("auto done");
-        return this.claw.isClosed();
+        return false;
     }
 
 
