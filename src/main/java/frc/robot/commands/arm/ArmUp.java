@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
 
-public class LowerArmUp extends CommandBase {
+public class ArmUp extends CommandBase {
 
 
     /**
@@ -16,7 +16,7 @@ public class LowerArmUp extends CommandBase {
     /**
      * @param arm an instance of {@link frc.robot.subsystems.Arm}
      */
-    public LowerArmUp(Arm arm) {
+    public ArmUp(Arm arm) {
         this.arm = arm;
         addRequirements(arm);
     }

@@ -1,10 +1,10 @@
-package frc.robot.commands.arm;
+package frc.robot.commands.secondarm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
 
-public class LowerArmDown extends CommandBase {
+public class SecondArmStop extends CommandBase {
 
 
     /**
@@ -16,7 +16,7 @@ public class LowerArmDown extends CommandBase {
     /**
      * @param arm an instance of {@link frc.robot.subsystems.Arm}
      */
-    public LowerArmDown(Arm arm) {
+    public SecondArmStop(Arm arm) {
         this.arm = arm;
         addRequirements(arm);
     }
@@ -32,7 +32,7 @@ public class LowerArmDown extends CommandBase {
      */
     @Override
     public void execute() {
-        this.arm.lowerArmDown();
+        this.arm.upperArmStop();
     }
 
 

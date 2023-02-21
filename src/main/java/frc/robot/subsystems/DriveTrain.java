@@ -19,7 +19,6 @@ public class DriveTrain extends SubsystemBase {
      * an abstract representation of a physical drive motor
      */
     private MotorController leftMotor, rightMotor;
- 
     /**
      * an abstract representation of a drive base
      */
@@ -30,18 +29,13 @@ public class DriveTrain extends SubsystemBase {
      * subsystem base object for chassis
      */
     public DriveTrain() {
-        this.leftMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.kLEFT);
-        System.out.println("Subsystem Log: Left motors are configured to port " + Constants.Subsystems.DriveTrain.kLEFT);
+        this.leftMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.leftDrive);
+        System.out.println("Subsystem Log: Left motors are configured to port " + Constants.Subsystems.DriveTrain.leftDrive);
             
-        this.rightMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.kRIGHT);
-        System.out.println("Subsystem Log: Right motors are configured to port " + Constants.Subsystems.DriveTrain.kRIGHT);
+        this.rightMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.rightDrive);
+        System.out.println("Subsystem Log: Right motors are configured to port " + Constants.Subsystems.DriveTrain.rightDrive);
 
         this.diffDrive = new DifferentialDrive(this.leftMotor, this.rightMotor);
-    }
-
-    
-    public void set(double leftPower, double rightPower) {
-        this.diffDrive.tankDrive(leftPower, rightPower);
     }
 
 
@@ -86,7 +80,7 @@ public class DriveTrain extends SubsystemBase {
      * @param angle raw values of joystick used to control heading movement
      */
     public void arcadeDriveWithXbox(double position, double angle) {
-        this.diffDrive.arcadeDrive(position, angle);
+        this.diffDrive.arcadeDrive(-position, -angle);
     }
 
 
@@ -97,7 +91,7 @@ public class DriveTrain extends SubsystemBase {
      * @param rightJoystick raw values of the right joystick
      */
     public void diffDrive(double leftJoystick, double rightJoystick) {
-        this.diffDrive.tankDrive(leftJoystick, -rightJoystick);
+        this.diffDrive.tankDrive(-leftJoystick, -rightJoystick);
     }
 
 
