@@ -22,17 +22,17 @@ public class Arm extends SubsystemBase {
      * subsystem base object for arm
      */
     public Arm() {
-        this.lowerArm = new PWMSparkMax(Constants.Subsystems.LowerArm2.PORT);
-        System.out.println("Subsystem Log: Lower arm is configured to port " + Constants.Subsystems.LowerArm2.PORT);
+        this.lowerArm = new PWMSparkMax(Constants.Subsystems.LowerArm2.kPORT);
+        System.out.println("Subsystem Log: Lower arm is configured to port " + Constants.Subsystems.LowerArm2.kPORT);
 
-        this.lowerArm2 = new PWMSparkMax(Constants.Subsystems.LowerArm.PORT);
-        System.out.println("Subsystem Log: Upper arm is configured to port " + Constants.Subsystems.LowerArm.PORT);
+        this.lowerArm2 = new PWMSparkMax(Constants.Subsystems.LowerArm.kPORT);
+        System.out.println("Subsystem Log: Upper arm is configured to port " + Constants.Subsystems.LowerArm.kPORT);
 
-        this.upperArm = new PWMSparkMax(Constants.Subsystems.UpperArm.PORT);
-        System.out.println("Subsystem Log: Lower second arm is configured to port " + Constants.Subsystems.UpperArm.PORT);
+        this.upperArm = new PWMSparkMax(Constants.Subsystems.UpperArm.kPORT);
+        System.out.println("Subsystem Log: Lower second arm is configured to port " + Constants.Subsystems.UpperArm.kPORT);
 
-        this.upperArm2 = new PWMSparkMax(Constants.Subsystems.UpperArm2.PORT);
-        System.out.println("Subsystem Log: Upper second arm is configured to port " + Constants.Subsystems.UpperArm2.PORT);
+        this.upperArm2 = new PWMSparkMax(Constants.Subsystems.UpperArm2.kPORT);
+        System.out.println("Subsystem Log: Upper second arm is configured to port " + Constants.Subsystems.UpperArm2.kPORT);
     }
 
 
@@ -40,8 +40,8 @@ public class Arm extends SubsystemBase {
      * arm goes up by setting power on the arm motor
      */
     public void lowerArmUp() {
-        this.lowerArm.set(Constants.Subsystems.LowerArm2.POWER);
-        this.lowerArm2.set(Constants.Subsystems.LowerArm.POWER);
+        this.lowerArm.set(Constants.Subsystems.LowerArm2.kPOWER);
+        this.lowerArm2.set(-Constants.Subsystems.LowerArm.kPOWER);
         System.out.println("Command Log: Lower arm is going up");
     }
 
@@ -50,8 +50,8 @@ public class Arm extends SubsystemBase {
      * arm goes down by setting power on the arm motor
      */
     public void lowerArmDown() {
-        this.lowerArm.set(-Constants.Subsystems.LowerArm2.POWER);
-        this.lowerArm2.set(-Constants.Subsystems.LowerArm.POWER);
+        this.lowerArm.set(-Constants.Subsystems.LowerArm2.kPOWER);
+        this.lowerArm2.set(Constants.Subsystems.LowerArm.kPOWER);
         System.out.println("Command Log: Lower arm is going down");
     }
 
@@ -71,8 +71,8 @@ public class Arm extends SubsystemBase {
      * second arm goes up by setting power on the arm motor
      */
     public void upperArmUp() {
-        this.upperArm.set(-Constants.Subsystems.UpperArm.POWER);
-        this.upperArm2.set(Constants.Subsystems.UpperArm2.POWER);
+        this.upperArm.set(Constants.Subsystems.UpperArm.kPOWER);
+        this.upperArm2.set(Constants.Subsystems.UpperArm2.kPOWER);
         System.out.println("Command Log: Upper arm is going up");
     }
 
@@ -81,8 +81,8 @@ public class Arm extends SubsystemBase {
      * second arm goes down by setting power on the arm motor
      */
     public void upperArmDown() {
-        this.upperArm.set(Constants.Subsystems.UpperArm.POWER);
-        this.upperArm2.set(-Constants.Subsystems.UpperArm2.POWER);
+        this.upperArm.set(-Constants.Subsystems.UpperArm.kPOWER);
+        this.upperArm2.set(-Constants.Subsystems.UpperArm2.kPOWER);
         System.out.println("Command Log: Upper arm is going up");
     }
 

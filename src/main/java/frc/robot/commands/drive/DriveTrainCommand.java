@@ -28,7 +28,6 @@ public class DriveTrainCommand extends CommandBase {
         this.navx = navx;
         addRequirements(driveTrain);
     }
-
     
     @Override
     public void initialize() {
@@ -41,10 +40,12 @@ public class DriveTrainCommand extends CommandBase {
      * different driving styles
      */
     @Override
+
     public void execute() {
+        System.out.println("Pitch: " + this.navx.getPitch());
         this.driveTrain.arcadeDriveWithXbox(
-            this.driveController.getRawAxis(Constants.Control.XboxController.leftJoystick), 
-            this.driveController.getRawAxis(Constants.Control.XboxController.rightJoystick));     
+            this.driveController.getRawAxis(Constants.Control.XboxController.kAngle), 
+            this.driveController.getRawAxis(Constants.Control.XboxController.kLEFT));     
     }
     
 
