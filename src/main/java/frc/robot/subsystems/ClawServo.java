@@ -13,7 +13,7 @@ public class ClawServo extends SubsystemBase {
     
     public ClawServo() {
         this.clawServo = new Servo(Constants.Subsystems.ClawServo.kPORT);
-        System.out.println("Subsystem Log: Claw is configured to port " + Constants.Subsystems.Claw.kPORT);
+        System.out.println("Subsystem Log: Claw is configured to CAN port");
     }
 
 

@@ -20,7 +20,7 @@ public class Claw extends SubsystemBase {
         this.claw = new CANSparkMax(56, MotorType.kBrushed);
         //this.encoder = this.claw.getEncoder();
         //this.claw.restoreFactoryDefaults();
-        System.out.println("Subsystem Log: Claw is configured to port 42");
+        System.out.println("Subsystem Log: Claw is configured to port 56");
     }
 
 

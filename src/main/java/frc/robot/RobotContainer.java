@@ -53,6 +53,7 @@ public class RobotContainer {
     Claw claw;
 
     XboxController driverController;
+    XboxController driverController2;
     JoystickButton buttonA, buttonB, buttonX, buttonY, rightBumper, leftBumper;
     POVButton upPOV, downPOV, leftPOV, rightPOV;
 
@@ -69,8 +70,8 @@ public class RobotContainer {
         this.claw = new Claw();
 
         this.driverController = new XboxController(Constants.Control.ControllerPort.kDRIVER);
-        this.buttonA = new JoystickButton(driverController, Constants.Control.Button.kA);
-        this.buttonB = new JoystickButton(driverController, Constants.Control.Button.kB);
+        this.buttonA = new JoystickButton(driverController2, Constants.Control.Button.kA);
+        this.buttonB = new JoystickButton(driverController2, Constants.Control.Button.kB);
         this.buttonX = new JoystickButton(driverController, Constants.Control.Button.kX);
         this.buttonY = new JoystickButton(driverController, Constants.Control.Button.kY);
         this.rightBumper = new JoystickButton(driverController, Constants.Control.Button.kRIGHT_BUMPER);
