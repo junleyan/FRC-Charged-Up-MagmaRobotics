@@ -15,7 +15,7 @@ public class Arm extends SubsystemBase {
     /**
      * an abstract representation of a physical robot arm
      */
-    private PWMSparkMax lowerArm, lowerArm2, upperArm;
+    private PWMSparkMax lowerArm, lowerArm2, upperMiddleArm;
 
   
     /**
@@ -28,7 +28,7 @@ public class Arm extends SubsystemBase {
         this.lowerArm2 = new PWMSparkMax(Constants.Subsystems.LowerArm.kPORT);
         System.out.println("Subsystem Log: Upper arm is configured to port " + Constants.Subsystems.LowerArm.kPORT);
 
-        this.upperArm = new PWMSparkMax(Constants.Subsystems.UpperMiddleArm.kPORT);
+        this.upperMiddleArm = new PWMSparkMax(Constants.Subsystems.UpperMiddleArm.kPORT);
         System.out.println("Subsystem Log: Lower second arm is configured to port " + Constants.Subsystems.UpperMiddleArm.kPORT);
         
     }
@@ -68,7 +68,7 @@ public class Arm extends SubsystemBase {
      * second arm goes up by setting power on the arm motor
      */
     public void upperArmUp() {
-        this.upperArm.set(Constants.Subsystems.UpperMiddleArm.kPOWER);
+        this.upperMiddleArm.set(Constants.Subsystems.UpperMiddleArm.kPOWER);
         System.out.println("Command Log: Upper arm is going up");
     }
 
@@ -77,7 +77,7 @@ public class Arm extends SubsystemBase {
      * second arm goes down by setting power on the arm motor
      */
     public void upperArmDown() {
-        this.upperArm.set(-Constants.Subsystems.UpperMiddleArm.kPOWER);
+        this.upperMiddleArm.set(-Constants.Subsystems.UpperMiddleArm.kPOWER);
         System.out.println("Command Log: Upper arm is going up");
     }
 
@@ -87,7 +87,7 @@ public class Arm extends SubsystemBase {
      * to stop second motors
      */
     public void upperArmStop() {
-        this.upperArm.stopMotor();
+        this.upperMiddleArm.stopMotor();
         System.out.println("Command Log: Upper arm is stopped");
     }
 

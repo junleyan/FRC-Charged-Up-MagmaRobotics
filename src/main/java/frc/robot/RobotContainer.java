@@ -52,8 +52,7 @@ public class RobotContainer {
     ClawServo clawServo;
     Claw claw;
 
-    XboxController driverController;
-    XboxController driverController2;
+    XboxController driversController, driverPartnerController;
     JoystickButton buttonA, buttonB, buttonX, buttonY, rightBumper, leftBumper;
     POVButton upPOV, downPOV, leftPOV, rightPOV;
 
@@ -69,19 +68,20 @@ public class RobotContainer {
         this.clawServo = new ClawServo();
         this.claw = new Claw();
 
-        this.driverController = new XboxController(Constants.Control.ControllerPort.kDRIVER);
-        this.buttonA = new JoystickButton(driverController2, Constants.Control.Button.kA);
-        this.buttonB = new JoystickButton(driverController2, Constants.Control.Button.kB);
-        this.buttonX = new JoystickButton(driverController, Constants.Control.Button.kX);
-        this.buttonY = new JoystickButton(driverController, Constants.Control.Button.kY);
-        this.rightBumper = new JoystickButton(driverController, Constants.Control.Button.kRIGHT_BUMPER);
-        this.leftBumper = new JoystickButton(driverController, Constants.Control.Button.kLEFT_BUMPER);
-        this.upPOV = new POVButton(driverController, Constants.Control.POVButton.kUP);
-        this.downPOV = new POVButton(driverController, Constants.Control.POVButton.kDOWN);
-        this.leftPOV = new POVButton(driverController, Constants.Control.POVButton.kLEFT);
-        this.rightPOV = new POVButton(driverController, Constants.Control.POVButton.kRIGHT);
+        this.driversController = new XboxController(Constants.Control.ControllerPort.kDRIVER);
+        this.driverPartnerController = new XboxController(Constants.Control.ControllerPort.kPARTNER);
+        this.buttonA = new JoystickButton(driverPartnerController, Constants.Control.Button.kA);
+        this.buttonB = new JoystickButton(driverPartnerController, Constants.Control.Button.kB);
+        this.buttonX = new JoystickButton(driverPartnerController, Constants.Control.Button.kX);
+        this.buttonY = new JoystickButton(driverPartnerController, Constants.Control.Button.kY);
+        this.rightBumper = new JoystickButton(driverPartnerController, Constants.Control.Button.kRIGHT_BUMPER);
+        this.leftBumper = new JoystickButton(driverPartnerController, Constants.Control.Button.kLEFT_BUMPER);
+        this.upPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kUP);
+        this.downPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kDOWN);
+        this.leftPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kLEFT);
+        this.rightPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kRIGHT);
       
-        this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
+        this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driversController, this.navx));
         this.camera_a = CameraServer.startAutomaticCapture(0);
         this.camera_b = CameraServer.startAutomaticCapture(1);
 
@@ -126,6 +126,7 @@ public class RobotContainer {
         return new SequentialCommandGroup(
             new Movement(this.driveTrain, 1500, 0.5),
             new Movement(this.driveTrain, 3800, -0.5));
+
       }
 
 

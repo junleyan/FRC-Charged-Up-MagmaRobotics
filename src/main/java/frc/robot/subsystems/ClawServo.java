@@ -13,23 +13,27 @@ public class ClawServo extends SubsystemBase {
     
     public ClawServo() {
         this.clawServo = new Servo(Constants.Subsystems.ClawServo.kPORT);
+ 
         System.out.println("Subsystem Log: Claw is configured to CAN port");
     }
 
 
     public void up() {
-        this.clawServo.set(-Constants.Subsystems.ClawServo.kPOWER);
+        this.clawServo.setAngle(90);
+        //this.clawServo.set(-Constants.Subsystems.ClawServo.kUpPos);
         System.out.println("Command Log: Opened claw");
     }
 
 
     public void down() {
-        this.clawServo.set(Constants.Subsystems.ClawServo.kPOWER);
+        this.clawServo.setAngle(0);
+        //this.clawServo.set(Constants.Subsystems.ClawServo.kDownPos);
         System.out.println("Command Log: Closed claw");
     }
 
-    public void stop(){
-        this.clawServo.set(0);
+    public void stop() {
+        this.clawServo.setDisabled();
+        System.out.println(this.clawServo.getAngle());
     }
 
 

@@ -41,7 +41,7 @@ public class DriveTrain extends SubsystemBase {
 
     
     public void set(double leftPower, double rightPower) {
-        this.diffDrive.tankDrive(leftPower, rightPower);
+        this.diffDrive.tankDrive(-leftPower, -rightPower);
     }
 
 
@@ -97,7 +97,7 @@ public class DriveTrain extends SubsystemBase {
      * @param rightJoystick raw values of the right joystick
      */
     public void diffDrive(double leftJoystick, double rightJoystick) {
-        this.diffDrive.tankDrive(leftJoystick, -rightJoystick);
+        this.diffDrive.tankDrive(leftJoystick, rightJoystick);
     }
 
 

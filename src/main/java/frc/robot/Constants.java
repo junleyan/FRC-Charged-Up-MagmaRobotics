@@ -20,6 +20,7 @@ public class Constants {
 
         public static class ControllerPort {
             public static final int kDRIVER = 0;
+            public static final int kPARTNER = 1; 
         }
 
         public static class JoystickController {
@@ -28,7 +29,9 @@ public class Constants {
             public static final int kSPEED = 3;
         }
 
+        //daniels driver preference
         public static class XboxController {
+            
             public static final int kLEFT = 1;
             public static final int kRIGHT = 5;
             public static final int kAngle = 4;
@@ -83,7 +86,8 @@ public class Constants {
         }
 
         public static class ClawServo{
-            public static final double kPOWER = 0.5;
+            public static final double kUpPos = 0.5;
+            public static final double kDownPos = -0.5;
             public static final int kPORT = 7;
         }
 
