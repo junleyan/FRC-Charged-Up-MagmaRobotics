@@ -17,11 +17,11 @@ public class Claw extends SubsystemBase {
     
     // make sure that the deviceID is same as the ID set on the motor controller
     public Claw() {
-        this.claw = new Spark(8);
+        this.claw = new Spark(4);
         this.counter = new Counter(new DigitalInput(0));
         //this.encoder = this.claw.getEncoder();
         //this.claw.restoreFactoryDefaults();
-        System.out.println("Subsystem Log: Claw is configured to port 8");
+        System.out.println("Subsystem Log: Claw is configured to port 4");
     }
 
 
