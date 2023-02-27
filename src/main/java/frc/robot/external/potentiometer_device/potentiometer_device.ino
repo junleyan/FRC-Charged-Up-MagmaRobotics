@@ -115,7 +115,7 @@ void loop() {
 
 		// If the DT state is different than the CLK state then
 		// the encoder is rotating CCW so decrement
-    if (selected) {
+    if (!selected) {
       if (digitalRead(DT) != currentStateCLK) {
         if (currentMode == 1 || currentMode == 2) {
           currentMode ++;
@@ -157,7 +157,7 @@ void loop() {
 		lastButtonPress = millis();
 	}
 
-  if (selected) {
+  if (!selected) {
     if (currentMode == 1) {
       for (int row = 0; row < 8; row++) {
         lc.setRow(0, row, letterSmallerL[row]);
