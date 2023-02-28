@@ -8,7 +8,6 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -26,9 +25,7 @@ import frc.robot.commands.claw.ClawStop;
 import frc.robot.commands.clawservo.ClawServoDown;
 import frc.robot.commands.clawservo.ClawServoStop;
 import frc.robot.commands.clawservo.ClawServoUp;
-import frc.robot.commands.drive.AutoBalance;
 import frc.robot.commands.drive.DriveTrainCommand;
-import frc.robot.commands.drive.Movement;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.ClawServo;
@@ -124,9 +121,16 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         return new SequentialCommandGroup(
-            new Movement(this.driveTrain, 1500, 0.5),
-            new Movement(this.driveTrain, 3800, -0.5));
-
+        // Auto 1
+            // new Movement(this.driveTrain, 0, 0, 0)
+        // Auto 2
+            // new Movement(this.driveTrain, 1000, -0.5, -0.5),
+            // new Movement(this.driveTrain, 1000, 0.5, 0.5)
+        // Last Resort
+            // new Movement(this.driveTrain, 0, 1, 1),
+            // new AutoBalance(this.driveTrain, this.navx)
+        );
+        //Just edit the times and power
       }
 
 
