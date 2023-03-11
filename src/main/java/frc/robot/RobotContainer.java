@@ -82,10 +82,10 @@ public class RobotContainer {
         this.camera_a = CameraServer.startAutomaticCapture(0);
         this.camera_b = CameraServer.startAutomaticCapture(1);
 
-        this.camera_a.setResolution(240, 140);
-        this.camera_b.setResolution(240, 140);
-        this.camera_a.setFPS(7);
-        this.camera_b.setFPS(7);
+        this.camera_a.setResolution(640, 480);
+        this.camera_b.setResolution(640, 480);
+        this.camera_a.setFPS(30);
+        this.camera_b.setFPS(30);
         
         // Configure the trigger bindings
         this.configureBindings();
