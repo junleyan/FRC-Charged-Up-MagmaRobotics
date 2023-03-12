@@ -73,6 +73,9 @@ public class RobotContainer {
         this.buttonY = new JoystickButton(driverPartnerController, Constants.Control.Button.kY);
         this.rightBumper = new JoystickButton(driverPartnerController, Constants.Control.Button.kRIGHT_BUMPER);
         this.leftBumper = new JoystickButton(driverPartnerController, Constants.Control.Button.kLEFT_BUMPER);
+
+        this.mainRightBumper = new JoystickButton(driversController, Constants.Control.Button.kRIGHT_BUMPER);
+
         this.upPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kUP);
         this.downPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kDOWN);
         this.leftPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kLEFT);
@@ -111,6 +114,7 @@ public class RobotContainer {
         this.buttonY.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
         this.rightBumper.onTrue(new ClawServoUp(this.clawServo)).onFalse(new ClawServoStop(this.clawServo));
         this.leftBumper.onTrue(new ClawServoDown(this.clawServo)).onFalse(new ClawServoStop(this.clawServo));
+        this.mainRightBumper.onTrue(speed = speed*0.5);
     }
 
 
