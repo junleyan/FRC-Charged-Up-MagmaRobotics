@@ -22,13 +22,9 @@ import frc.robot.commands.arm.UpperArmUp;
 import frc.robot.commands.claw.ClawClose;
 import frc.robot.commands.claw.ClawOpen;
 import frc.robot.commands.claw.ClawStop;
-import frc.robot.commands.clawservo.ClawServoDown;
-import frc.robot.commands.clawservo.ClawServoStop;
-import frc.robot.commands.clawservo.ClawServoUp;
 import frc.robot.commands.drive.DriveTrainCommand;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
-import frc.robot.subsystems.ClawServo;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.NavX;
 
@@ -46,7 +42,6 @@ public class RobotContainer {
     DriveTrain driveTrain;
     Arm arm;
     NavX navx;
-    ClawServo clawServo;
     Claw claw;
 
     XboxController driversController, driverPartnerController;
@@ -62,7 +57,6 @@ public class RobotContainer {
         this.navx = new NavX();
         this.driveTrain = new DriveTrain();
         this.arm = new Arm();
-        this.clawServo = new ClawServo();
         this.claw = new Claw();
 
         this.driversController = new XboxController(Constants.Control.ControllerPort.kDRIVER);
@@ -112,8 +106,6 @@ public class RobotContainer {
         this.rightPOV.onTrue(new LowerArmDown(this.arm)).onFalse(new LowerArmStop(this.arm));
         this.buttonX.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
         this.buttonY.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
-        this.rightBumper.onTrue(new ClawServoUp(this.clawServo)).onFalse(new ClawServoStop(this.clawServo));
-        this.leftBumper.onTrue(new ClawServoDown(this.clawServo)).onFalse(new ClawServoStop(this.clawServo));
         this.mainRightBumper.onTrue(speed = speed*0.5);
     }
 

@@ -85,12 +85,6 @@ public class Constants {
             public static final double kOpenLimit = 300;
         }
 
-        public static class ClawServo{
-            public static final double kUpPos = 0.5;
-            public static final double kDownPos = -0.5;
-            public static final int kPORT = 7;
-        }
-
     }
 
 
