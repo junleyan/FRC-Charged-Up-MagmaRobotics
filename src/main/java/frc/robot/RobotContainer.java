@@ -22,6 +22,7 @@ import frc.robot.commands.arm.UpperArmUp;
 import frc.robot.commands.claw.ClawClose;
 import frc.robot.commands.claw.ClawOpen;
 import frc.robot.commands.claw.ClawStop;
+import frc.robot.commands.drive.AutoBalance;
 import frc.robot.commands.drive.DriveSlower;
 import frc.robot.commands.drive.DriveTrainCommand;
 import frc.robot.subsystems.Arm;
@@ -62,21 +63,22 @@ public class RobotContainer {
 
         this.driverController = new XboxController(Constants.Control.ControllerPort.kDRIVER);
         this.driverPartnerController = new XboxController(Constants.Control.ControllerPort.kPARTNER);
+        
+        this.driverRightBumper = new JoystickButton(driverController, Constants.Control.Button.kRIGHT_BUMPER);
+
         this.buttonA = new JoystickButton(driverPartnerController, Constants.Control.Button.kA);
         this.buttonB = new JoystickButton(driverPartnerController, Constants.Control.Button.kB);
         this.buttonX = new JoystickButton(driverPartnerController, Constants.Control.Button.kX);
         this.buttonY = new JoystickButton(driverPartnerController, Constants.Control.Button.kY);
         this.rightBumper = new JoystickButton(driverPartnerController, Constants.Control.Button.kRIGHT_BUMPER);
         this.leftBumper = new JoystickButton(driverPartnerController, Constants.Control.Button.kLEFT_BUMPER);
-
-        this.driverRightBumper = new JoystickButton(driverController, Constants.Control.Button.kRIGHT_BUMPER);
-
         this.upPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kUP);
         this.downPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kDOWN);
         this.leftPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kLEFT);
         this.rightPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kRIGHT);
       
         this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
+        
         this.camera_a = CameraServer.startAutomaticCapture(0);
         this.camera_b = CameraServer.startAutomaticCapture(1);
 
@@ -125,7 +127,7 @@ public class RobotContainer {
             // new Movement(this.driveTrain, 1000, 0.5, 0.5)
         // Last Resort
             // new Movement(this.driveTrain, 0, 1, 1),
-            // new AutoBalance(this.driveTrain, this.navx)
+            new AutoBalance(this.driveTrain, this.navx)
         );
         //Just edit the times and power
       }

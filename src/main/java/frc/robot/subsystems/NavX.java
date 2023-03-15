@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-
+import java.lang.Math;
 
 public class NavX extends SubsystemBase {
 
@@ -43,8 +43,8 @@ public class NavX extends SubsystemBase {
 
     public double getCalculatedBalancePID() {
         double calculatedBalancePID = this.balancePID.calculate(getPitch());
-        if (calculatedBalancePID > 1) {
-            calculatedBalancePID = 1.0;
+        if (Math.abs(getPitch()) < 2 ) {
+            calculatedBalancePID = 0;
         }
         SmartDashboard.putNumber("Power", calculatedBalancePID);
         SmartDashboard.putNumber("Balance Error", Constants.PIDController.BalancePID.kSetpoint - getPitch());
