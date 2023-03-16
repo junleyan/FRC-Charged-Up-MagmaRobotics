@@ -28,7 +28,19 @@ public class DriveTrain extends SubsystemBase {
     /**
      * subsystem base object for chassis
      */
+
+    private CANSparkMax leftDriveMotor;
+    private CANSparkMax leftDriveMotor2;
+    private CANSparkMax rightDriveMotor;
+    private CANSparkMax rightDriveMotor2;
+
     public DriveTrain() {
+
+        this.leftDriveMotor = new CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushless);
+        this.leftDriveMotor2 = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless);
+        this.rightDriveMotor = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushless);
+        this.rightDriveMotor2 = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushless);
+
         this.leftMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.kLEFT);
         System.out.println("Subsystem Log: Left motors are configured to port " + Constants.Subsystems.DriveTrain.kLEFT);
             
