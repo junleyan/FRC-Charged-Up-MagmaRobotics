@@ -30,10 +30,15 @@ public class AutoBalance extends CommandBase {
 
     // called repeatedly when this Command is scheduled to run
     public void execute() {
-        this.driveTrain.diffDrive(-this.navx.getCalculatedBalancePID(), -this.navx.getCalculatedBalancePID());;
-        System.out.println("Executing auto balancing");
-        System.out.println("Pitch: " + this.navx.getPitch());
-        System.out.println("PID Value: " + this.navx.getCalculatedBalancePID());
+        while (isFinished() == false){
+            if(this.navx.checkCalculatedBalancePID() == false){
+                this.driveTrain.diffDrive(this.navx.getCalculatedBalancePID()/2.5, this.navx.getCalculatedBalancePID()/2.5  );
+                System.out.println("Pitch: " + this.navx.getPitch());
+            }
+            else{
+                this.driveTrain.diffDrive(0, 0);
+            }
+        }
     }
 
 
