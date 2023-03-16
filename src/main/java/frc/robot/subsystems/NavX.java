@@ -20,8 +20,7 @@ public class NavX extends SubsystemBase {
      * an abstract representation of a physical NavX
      */
     private AHRS navx;
-    private PIDController balancePID;
-    public boolean calibrated = false; 
+-p     public boolean calibrated = false; 
 
     
     /**
@@ -34,22 +33,34 @@ public class NavX extends SubsystemBase {
             System.out.print("Unable to connect to NavX");
         }
 
-        this.balancePID = new PIDController(Constants.PIDController.BalancePID.kP, 
-                                            Constants.PIDController.BalancePID.kI, 
-                                            Constants.PIDController.BalancePID.kD);
-        this.balancePID.setSetpoint(Constants.PIDController.BalancePID.kSetpoint);
+        // this.balancePID = new PIDController(Constants.PIDController.BalancePID.kP, 
+        //                                     Constants.PIDController.BalancePID.kI, 
+        //                                     Constants.PIDController.BalancePID.kD);
+        // this.balancePID.setSetpoint(Constants.PIDController.BalancePID.kSetpoint);
     }
 
 
     public double getCalculatedBalancePID() {
         double calculatedBalancePID = this.balancePID.calculate(getPitch());
-        if (Math.abs(getPitch()) < 2 ) {
-            calculatedBalancePID = 0;
+        if(calculatedBalancePID > 1){
+            calculatedBalancePID = 1;
+        }
+        if(calculatedBalancePID < -1){
+            calculatedBalancePID = -1;
         }
         SmartDashboard.putNumber("Power", calculatedBalancePID);
         SmartDashboard.putNumber("Balance Error", Constants.PIDController.BalancePID.kSetpoint - getPitch());
         SmartDashboard.putNumber("Setpoint", Constants.PIDController.BalancePID.kSetpoint);
         return calculatedBalancePID;
+    }
+
+    public boolean checkCalculatedBalancePID(){
+        double calculatedBalancePID = this.balancePID.calculate(getPitch());
+        if (Math.abs(getPitch()) < 2){
+            calculatedBalancePID = 0;
+            return true;
+        }
+        return false;
     }
 
 
@@ -78,10 +89,10 @@ public class NavX extends SubsystemBase {
     }
 
 
-    public void calibrate() {
-        this.navx.calibrate();
-        this.calibrated = true; 
-    }
+    // public void calibrate() {
+    //     this.navx.calibrate();
+    //     this.calibrated = true; 
+    // }
 
 
 }

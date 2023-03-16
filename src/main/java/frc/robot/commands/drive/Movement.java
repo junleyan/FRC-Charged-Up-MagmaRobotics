@@ -7,14 +7,15 @@ import frc.robot.subsystems.DriveTrain;
 public class Movement extends CommandBase {
 
 
-    private double power, duration;
+    private double leftpower, rightpower, duration;
     private DriveTrain driveTrain;
 
 
-    public Movement(DriveTrain driveTrain, double duration, double power) {
+    public Movement(DriveTrain driveTrain, double duration, double leftpower, double rightpower) {
         this.driveTrain = driveTrain;
         this.duration = duration;
-        this.power = power;
+        this.leftpower = leftpower;
+        this.rightpower = rightpower;
         addRequirements(driveTrain);
     }
 
@@ -29,8 +30,7 @@ public class Movement extends CommandBase {
 
     // called repeatedly when this Command is scheduled to run
     public void execute() {
-        this.driveTrain.diffDrive(this.power,this.power);
-        System.out.println("executing auto");
+        this.driveTrain.diffDrive(this.leftpower,this.rightpower);
     }
 
 
@@ -44,7 +44,6 @@ public class Movement extends CommandBase {
     // called once after isFinished returns true
     // drive train is stopped
     protected void end() {
-        System.out.println("auto done");
         this.driveTrain.stop();
     }
 
