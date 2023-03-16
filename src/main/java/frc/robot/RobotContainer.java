@@ -121,7 +121,10 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        return new ParallelCommandGroup(new Movement(this.driveTrain, 2000, 0.5, 0.5),new AutoBalance(this.driveTrain, this.navx));
+        return new ParallelCommandGroup(
+            new Movement(this.driveTrain, 2000, 0.5, 0.5),
+            new AutoBalance(this.driveTrain, this.navx)
+            );
         //Just edit the times and power
       }
 

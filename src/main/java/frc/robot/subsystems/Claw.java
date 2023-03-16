@@ -1,8 +1,10 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -10,16 +12,14 @@ import frc.robot.Constants;
 
 public class Claw extends SubsystemBase {
 
-    private Spark claw;
-    private CANSparkMax clawMotor;
+    private CANSparkMax claw;
     private Counter counter;
     private int position = 0; 
 
     
     // make sure that the deviceID is same as the ID set on the motor controller
     public Claw() {
-        this.clawMotor = new CANSparkMax(7, CANSparkMaxLowLevel.MotorType.kBrushless);
-        this.claw = new Spark(4);
+        this.claw = new CANSparkMax(7, MotorType.kBrushless);
         this.counter = new Counter(new DigitalInput(0));
         //this.encoder = this.claw.getEncoder();
         //this.claw.restoreFactoryDefaults();

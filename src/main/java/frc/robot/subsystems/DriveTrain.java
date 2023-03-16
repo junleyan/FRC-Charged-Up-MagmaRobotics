@@ -5,11 +5,12 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import java.lang.Math;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class DriveTrain extends SubsystemBase {
 
@@ -17,8 +18,12 @@ public class DriveTrain extends SubsystemBase {
     /**
      * an abstract representation of a physical drive motor
      */
-    private MotorController leftMotor, rightMotor;
- 
+
+    private CANSparkMax frontLeftDriveMotor;
+    private CANSparkMax rearLeftDriveMotor;
+    private CANSparkMax frontRightDriveMotor;
+    private CANSparkMax rearRightDriveMotor;
+    private MotorControllerGroup rightMotor, leftMotor; 
     /**
      * an abstract representation of a drive base
      */
@@ -29,23 +34,15 @@ public class DriveTrain extends SubsystemBase {
      * subsystem base object for chassis
      */
 
-    private CANSparkMax leftDriveMotor;
-    private CANSparkMax leftDriveMotor2;
-    private CANSparkMax rightDriveMotor;
-    private CANSparkMax rightDriveMotor2;
-
     public DriveTrain() {
 
-        this.leftDriveMotor = new CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushless);
-        this.leftDriveMotor2 = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless);
-        this.rightDriveMotor = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushless);
-        this.rightDriveMotor2 = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushless);
+        this.frontLeftDriveMotor = new CANSparkMax(1, MotorType.kBrushless);
+        this.rearLeftDriveMotor = new CANSparkMax(2, MotorType.kBrushless);
+        this.leftMotor = new MotorControllerGroup(frontLeftDriveMotor, rearLeftDriveMotor);
 
-        this.leftMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.kLEFT);
-        System.out.println("Subsystem Log: Left motors are configured to port " + Constants.Subsystems.DriveTrain.kLEFT);
-            
-        this.rightMotor = new PWMSparkMax(Constants.Subsystems.DriveTrain.kRIGHT);
-        System.out.println("Subsystem Log: Right motors are configured to port " + Constants.Subsystems.DriveTrain.kRIGHT);
+        this.frontRightDriveMotor = new CANSparkMax(3, MotorType.kBrushless);
+        this.rearRightDriveMotor = new CANSparkMax(4, MotorType.kBrushless);
+        this.rightMotor = new MotorControllerGroup(frontRightDriveMotor, rearRightDriveMotor);
 
         this.diffDrive = new DifferentialDrive(this.leftMotor, this.rightMotor);
     }

@@ -20,7 +20,8 @@ public class NavX extends SubsystemBase {
      * an abstract representation of a physical NavX
      */
     private AHRS navx;
--p     public boolean calibrated = false; 
+    private PIDController balancePID;
+    public boolean calibrated = false; 
 
     
     /**
@@ -33,10 +34,10 @@ public class NavX extends SubsystemBase {
             System.out.print("Unable to connect to NavX");
         }
 
-        // this.balancePID = new PIDController(Constants.PIDController.BalancePID.kP, 
-        //                                     Constants.PIDController.BalancePID.kI, 
-        //                                     Constants.PIDController.BalancePID.kD);
-        // this.balancePID.setSetpoint(Constants.PIDController.BalancePID.kSetpoint);
+        this.balancePID = new PIDController(Constants.PIDController.BalancePID.kP, 
+                                            Constants.PIDController.BalancePID.kI, 
+                                            Constants.PIDController.BalancePID.kD);
+        this.balancePID.setSetpoint(Constants.PIDController.BalancePID.kSetpoint);
     }
 
 
