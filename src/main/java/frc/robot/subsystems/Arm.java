@@ -7,6 +7,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 public class Arm extends SubsystemBase {
@@ -16,20 +18,22 @@ public class Arm extends SubsystemBase {
      * an abstract representation of a physical robot arm
      */
     private PWMSparkMax lowerArm, lowerArm2, upperMiddleArm;
+    private CANSparkMax lowerArm, lowerArm2, upperMiddleArm;
 
   
     /**
      * subsystem base object for arm
      */
     public Arm() {
-        this.lowerArm = new PWMSparkMax(Constants.Subsystems.LowerArm2.kPORT);
+        //this.lowerArm = new PWMSparkMax(Constants.Subsystems.LowerArm2.kPORT);
+        this.lowerArm = new CANSparkMax(6, MotorType.kBrushless);
         System.out.println("Subsystem Log: Lower arm is configured to port " + Constants.Subsystems.LowerArm2.kPORT);
 
-        this.lowerArm2 = new PWMSparkMax(Constants.Subsystems.LowerArm.kPORT);
-        System.out.println("Subsystem Log: Upper arm is configured to port " + Constants.Subsystems.LowerArm.kPORT);
+        //this.lowerArm2 = new PWMSparkMax(Constants.Subsystems.LowerArm.kPORT);
+        //System.out.println("Subsystem Log: Upper arm is configured to port " + Constants.Subsystems.LowerArm.kPORT);
 
-        this.upperMiddleArm = new PWMSparkMax(Constants.Subsystems.UpperMiddleArm.kPORT);
-        System.out.println("Subsystem Log: Lower second arm is configured to port " + Constants.Subsystems.UpperMiddleArm.kPORT);
+        //this.upperMiddleArm = new PWMSparkMax(Constants.Subsystems.UpperMiddleArm.kPORT);
+        //System.out.println("Subsystem Log: Lower second arm is configured to port " + Constants.Subsystems.UpperMiddleArm.kPORT);
         
     }
 
