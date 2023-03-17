@@ -32,7 +32,7 @@ public class AutoBalance extends CommandBase {
     public void execute() {
         while (isFinished() == false){
             if(this.navx.checkCalculatedBalancePID() == false){
-                this.driveTrain.diffDrive(this.navx.getCalculatedBalancePID()/2.5, this.navx.getCalculatedBalancePID()/2.5  );
+                this.driveTrain.diffDrive(this.navx.getCalculatedBalancePID()/2.5, this.navx.getCalculatedBalancePID()/2.5);
                 System.out.println("Pitch: " + this.navx.getPitch());
             }
             else{
@@ -45,7 +45,7 @@ public class AutoBalance extends CommandBase {
     // make this return true when this Command no longer needs to run execute()
     // checks if the time has passed the set duration
     public boolean isFinished() {
-        if (System.currentTimeMillis() >= this.duration && this.navx.getPitch() == 0) {
+        if (System.currentTimeMillis() >= this.duration) {
             System.out.println("Executing auto balancing");
             System.out.println("Pitch: " + this.navx.getPitch());
             System.out.println("PID Value: " + this.navx.getCalculatedBalancePID());

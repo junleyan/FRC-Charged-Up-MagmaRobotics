@@ -57,7 +57,7 @@ public class NavX extends SubsystemBase {
 
     public boolean checkCalculatedBalancePID(){
         double calculatedBalancePID = this.balancePID.calculate(getPitch());
-        if (Math.abs(getPitch()) < 2){
+        if (Math.abs(calculatedBalancePID) < 2){
             calculatedBalancePID = 0;
             return true;
         }
