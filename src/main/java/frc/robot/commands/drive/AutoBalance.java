@@ -13,9 +13,10 @@ public class AutoBalance extends CommandBase {
     private NavX navx; 
 
 
-    public AutoBalance(DriveTrain driveTrain, NavX navx) {
+    public AutoBalance(DriveTrain driveTrain, NavX navx, double duration) {
         this.driveTrain = driveTrain;
         this.navx = navx;
+        this.duration = duration;
         addRequirements(driveTrain, navx);
     }
 
@@ -24,7 +25,7 @@ public class AutoBalance extends CommandBase {
     // calculates when to end Command
     public void initialize() {
         double currentTime = System.currentTimeMillis();
-        this.duration = (currentTime + 3000);
+        this.duration = (currentTime + duration);
     }
 
 
