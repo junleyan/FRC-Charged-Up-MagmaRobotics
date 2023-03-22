@@ -8,12 +8,12 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.arm.LowerArmAuto;
 import frc.robot.commands.arm.LowerArmDown;
 import frc.robot.commands.arm.LowerArmStop;
 import frc.robot.commands.arm.LowerArmUp;
@@ -27,6 +27,7 @@ import frc.robot.commands.drive.AutoBalance;
 import frc.robot.commands.drive.DriveSlower;
 import frc.robot.commands.drive.DriveTrainCommand;
 import frc.robot.commands.drive.Movement;
+import frc.robot.subsystems.Arduino;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DriveTrain;
@@ -47,6 +48,7 @@ public class RobotContainer {
     Arm arm;
     NavX navx;
     Claw claw;
+    Arduino arduino;
 
     XboxController driverController, driverPartnerController;
     JoystickButton buttonA, buttonB, buttonX, buttonY, rightBumper, leftBumper, driverRightBumper;
@@ -55,13 +57,13 @@ public class RobotContainer {
     UsbCamera camera_a; 
     UsbCamera camera_b;
     
-    
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
         this.navx = new NavX();
         this.driveTrain = new DriveTrain();
         this.arm = new Arm();
         this.claw = new Claw();
+        this.arduino = new Arduino();
 
         this.driverController = new XboxController(Constants.Control.ControllerPort.kDRIVER);
         this.driverPartnerController = new XboxController(Constants.Control.ControllerPort.kPARTNER);
@@ -107,10 +109,10 @@ public class RobotContainer {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
         this.upPOV.onTrue(new UpperArmDown(this.arm)).onFalse(new UpperArmStop(this.arm));
         this.downPOV.onTrue(new UpperArmUp(this.arm)).onFalse(new UpperArmStop(this.arm));
-        this.buttonY.onTrue(new LowerArmUp(this.arm)).onFalse(new LowerArmStop(this.arm));
-        this.buttonA.onTrue(new LowerArmDown(this.arm)).onFalse(new LowerArmStop(this.arm));
-        this.leftBumper.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
-        this.rightBumper.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
+        this.leftPOV.onTrue(new LowerArmUp(this.arm)).onFalse(new LowerArmStop(this.arm));
+        this.rightPOV.onTrue(new LowerArmDown(this.arm)).onFalse(new LowerArmStop(this.arm));
+        this.buttonX.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
+        this.buttonY.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
         this.driverRightBumper.onTrue(new DriveSlower(this.driveTrain, this.driverController, this.navx)).onFalse(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
     }
 
@@ -122,9 +124,11 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         return new SequentialCommandGroup(
-            new Movement(this.driveTrain, 2000, 0.5, 0.5),
-            new AutoBalance(this.driveTrain, this.navx)
+            // new LowerArmAuto(this.arm, 2000),
+            new Movement(this.driveTrain, 3000, 0.5, 0.5),
+            new AutoBalance(this.driveTrain, this.navx, 5000)
             );
+        
         //Just edit the times and power
       }
 

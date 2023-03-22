@@ -23,7 +23,7 @@ public class DriveTrain extends SubsystemBase {
     private CANSparkMax rearLeftDriveMotor;
     private CANSparkMax frontRightDriveMotor;
     private CANSparkMax rearRightDriveMotor;
-    private MotorControllerGroup rightMotor, leftMotor; 
+    private MotorControllerGroup rightMotor, leftMotor;
     /**
      * an abstract representation of a drive base
      */

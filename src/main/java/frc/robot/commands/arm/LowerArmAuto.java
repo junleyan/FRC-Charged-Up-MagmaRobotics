@@ -28,7 +28,7 @@ public class LowerArmAuto extends CommandBase {
 
     // called repeatedly when this Command is scheduled to run
     public void execute() {
-        this.arm.lowerArmUp();
+        this.arm.lowerArmDown();
         System.out.println("executing auto");
     }
 

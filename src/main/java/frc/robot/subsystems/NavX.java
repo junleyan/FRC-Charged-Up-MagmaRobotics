@@ -43,11 +43,11 @@ public class NavX extends SubsystemBase {
 
     public double getCalculatedBalancePID() {
         double calculatedBalancePID = this.balancePID.calculate(getPitch());
-        if(calculatedBalancePID > 1){
-            calculatedBalancePID = 1;
+        if(calculatedBalancePID > 0.50){
+            calculatedBalancePID = 0.50;
         }
-        if(calculatedBalancePID < -1){
-            calculatedBalancePID = -1;
+        if(calculatedBalancePID < -0.50){
+            calculatedBalancePID = -0.50;
         }
         SmartDashboard.putNumber("Power", calculatedBalancePID);
         SmartDashboard.putNumber("Balance Error", Constants.PIDController.BalancePID.kSetpoint - getPitch());
@@ -58,7 +58,6 @@ public class NavX extends SubsystemBase {
     public boolean checkCalculatedBalancePID(){
         double calculatedBalancePID = this.balancePID.calculate(getPitch());
         if (Math.abs(calculatedBalancePID) < 2){
-            calculatedBalancePID = 0;
             return true;
         }
         return false;

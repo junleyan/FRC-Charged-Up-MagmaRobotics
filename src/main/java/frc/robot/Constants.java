@@ -94,8 +94,8 @@ public class Constants {
         public static class BalancePID {
             public static final int kSetpoint = 0;
             public static final double kP = 0.1;
-            public static final double kI = 0.05;
-            public static final double kD = 0.5;
+            public static final double kI = 0.0;
+            public static final double kD = 0.0;
         }
 
     }
