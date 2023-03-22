@@ -107,12 +107,12 @@ public class RobotContainer {
      */
     private void configureBindings() {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-        this.upPOV.onTrue(new UpperArmDown(this.arm)).onFalse(new UpperArmStop(this.arm));
-        this.downPOV.onTrue(new UpperArmUp(this.arm)).onFalse(new UpperArmStop(this.arm));
-        this.leftPOV.onTrue(new LowerArmUp(this.arm)).onFalse(new LowerArmStop(this.arm));
-        this.rightPOV.onTrue(new LowerArmDown(this.arm)).onFalse(new LowerArmStop(this.arm));
-        this.buttonX.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
-        this.buttonY.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
+        this.downPOV.onTrue(new UpperArmDown(this.arm)).onFalse(new UpperArmStop(this.arm));
+        this.upPOV.onTrue(new UpperArmUp(this.arm)).onFalse(new UpperArmStop(this.arm));
+        this.buttonY.onTrue(new LowerArmUp(this.arm)).onFalse(new LowerArmStop(this.arm));
+        this.buttonA.onTrue(new LowerArmDown(this.arm)).onFalse(new LowerArmStop(this.arm));
+        this.leftBumper.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
+        this.rightBumper.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
         this.driverRightBumper.onTrue(new DriveSlower(this.driveTrain, this.driverController, this.navx)).onFalse(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
     }
 
