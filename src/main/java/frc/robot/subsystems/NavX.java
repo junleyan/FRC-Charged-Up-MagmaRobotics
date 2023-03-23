@@ -7,7 +7,7 @@ package frc.robot.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.I2C.Port;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -29,10 +29,13 @@ public class NavX extends SubsystemBase {
      */
     public NavX() {
         try { 
-            this.navx = new AHRS(Port.kMXP);
+            this.navx = new AHRS(SerialPort.Port.kUSB1);
+            this.navx.calibrate();
         } catch (Exception e) {
             System.out.print("Unable to connect to NavX");
         }
+        
+        
 
         this.balancePID = new PIDController(Constants.PIDController.BalancePID.kP, 
                                             Constants.PIDController.BalancePID.kI, 
@@ -43,12 +46,6 @@ public class NavX extends SubsystemBase {
 
     public double getCalculatedBalancePID() {
         double calculatedBalancePID = this.balancePID.calculate(getPitch());
-        if(calculatedBalancePID > 0.50){
-            calculatedBalancePID = 0.50;
-        }
-        if(calculatedBalancePID < -0.50){
-            calculatedBalancePID = -0.50;
-        }
         SmartDashboard.putNumber("Power", calculatedBalancePID);
         SmartDashboard.putNumber("Balance Error", Constants.PIDController.BalancePID.kSetpoint - getPitch());
         SmartDashboard.putNumber("Setpoint", Constants.PIDController.BalancePID.kSetpoint);

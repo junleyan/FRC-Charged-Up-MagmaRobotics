@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commands.arm.LowerArmAuto;
 import frc.robot.commands.arm.LowerArmDown;
 import frc.robot.commands.arm.LowerArmStop;
 import frc.robot.commands.arm.LowerArmUp;
@@ -109,8 +108,8 @@ public class RobotContainer {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
         this.downPOV.onTrue(new UpperArmDown(this.arm)).onFalse(new UpperArmStop(this.arm));
         this.upPOV.onTrue(new UpperArmUp(this.arm)).onFalse(new UpperArmStop(this.arm));
-        this.buttonY.onTrue(new LowerArmUp(this.arm)).onFalse(new LowerArmStop(this.arm));
-        this.buttonA.onTrue(new LowerArmDown(this.arm)).onFalse(new LowerArmStop(this.arm));
+        this.buttonA.onTrue(new LowerArmUp(this.arm)).onFalse(new LowerArmStop(this.arm));
+        this.buttonY.onTrue(new LowerArmDown(this.arm)).onFalse(new LowerArmStop(this.arm));
         this.leftBumper.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
         this.rightBumper.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
         this.driverRightBumper.onTrue(new DriveSlower(this.driveTrain, this.driverController, this.navx)).onFalse(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
@@ -125,8 +124,8 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         return new SequentialCommandGroup(
             // new LowerArmAuto(this.arm, 2000),
-            new Movement(this.driveTrain, 3000, 0.5, 0.5),
-            new AutoBalance(this.driveTrain, this.navx, 5000)
+            // new Movement(this.driveTrain, 3000, 0.5, 0.5),
+            // new AutoBalance(this.driveTrain, this.navx, 5000)
             );
         
         //Just edit the times and power

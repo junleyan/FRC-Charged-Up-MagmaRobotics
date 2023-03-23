@@ -75,7 +75,7 @@ public class Constants {
         }
 
         public static class UpperMiddleArm{
-            public static final double kPOWER = 1;
+            public static final double kPOWER = 0.2;
             public static final int kPORT = 1;
         }
 
@@ -95,7 +95,7 @@ public class Constants {
             public static final int kSetpoint = 0;
             public static final double kP = 0.1;
             public static final double kI = 0.0;
-            public static final double kD = 0.0;
+            public static final double kD = 0.25;
         }
 
     }

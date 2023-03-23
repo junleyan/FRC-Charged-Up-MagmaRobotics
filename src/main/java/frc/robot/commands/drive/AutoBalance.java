@@ -46,7 +46,7 @@ public class AutoBalance extends CommandBase {
     // make this return true when this Command no longer needs to run execute()
     // checks if the time has passed the set duration
     public boolean isFinished() {
-        while(System.currentTimeMillis() >= this.length) {
+        while (System.currentTimeMillis() >= this.length) {
             return (!this.navx.checkCalculatedBalancePID());
         }
         return false;
