@@ -13,6 +13,7 @@ public class ClawAutoOpen extends CommandBase {
 
     public ClawAutoOpen(Claw claw, double duration) {
         this.claw = claw;
+        this.duration = duration;
         addRequirements(claw);
     }
 
@@ -27,7 +28,7 @@ public class ClawAutoOpen extends CommandBase {
 
     // called repeatedly when this Command is scheduled to run
     public void execute() {
-        this.claw.open();
+        this.claw.close();
         System.out.println("executing auto");
     }
 
@@ -41,9 +42,8 @@ public class ClawAutoOpen extends CommandBase {
 
     // called once after isFinished returns true
     // drive train is stopped
-    protected boolean end() {
-        System.out.println("auto done");
-        return false;
+    protected void end() {
+        this.claw.stop();
     }
 
 

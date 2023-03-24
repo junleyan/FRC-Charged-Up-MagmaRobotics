@@ -14,17 +14,15 @@ public class DriveSlower extends CommandBase {
      */
     private final DriveTrain driveTrain;
     private final XboxController driveController;
-    private final NavX navx;
 
 
     /**
      * @param driveTrain an instance of {@link frc.robot.subsystems.DriveTrain}
      * @param driveController an instance of {@link edu.wpi.first.wpilibj.XboxController}
      */
-    public DriveSlower(DriveTrain driveTrain, XboxController driveController, NavX navx){
+    public DriveSlower(DriveTrain driveTrain, XboxController driveController){
         this.driveTrain = driveTrain;
         this.driveController = driveController;
-        this.navx = navx;
         addRequirements(driveTrain);
     }
     
@@ -41,10 +39,9 @@ public class DriveSlower extends CommandBase {
     @Override
 
     public void execute() {
-        System.out.println("Pitch: " + this.navx.getPitch());
         this.driveTrain.diffDrive(
-            this.driveController.getRawAxis(Constants.Control.XboxController.kRIGHT)/2, 
-            this.driveController.getRawAxis(Constants.Control.XboxController.kLEFT)/2);     
+            -this.driveController.getRawAxis(Constants.Control.XboxController.kLEFT)*0.5, 
+            -this.driveController.getRawAxis(Constants.Control.XboxController.kRIGHT)*0.5);     
     }
     
 

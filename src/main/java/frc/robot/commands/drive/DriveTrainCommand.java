@@ -15,17 +15,15 @@ public class DriveTrainCommand extends CommandBase {
      */
     private final DriveTrain driveTrain;
     private final XboxController driveController;
-    private final NavX navx;
 
 
     /**
      * @param driveTrain an instance of {@link frc.robot.subsystems.DriveTrain}
      * @param driveController an instance of {@link edu.wpi.first.wpilibj.XboxController}
      */
-    public DriveTrainCommand(DriveTrain driveTrain, XboxController driveController, NavX navx){
+    public DriveTrainCommand(DriveTrain driveTrain, XboxController driveController){
         this.driveTrain = driveTrain;
         this.driveController = driveController;
-        this.navx = navx;
         addRequirements(driveTrain);
     }
     
@@ -42,10 +40,9 @@ public class DriveTrainCommand extends CommandBase {
     @Override
 
     public void execute() {
-        System.out.println("Pitch: " + this.navx.getPitch());
         this.driveTrain.diffDrive(
-            this.driveController.getRawAxis(Constants.Control.XboxController.kRIGHT), 
-            this.driveController.getRawAxis(Constants.Control.XboxController.kLEFT));     
+            -this.driveController.getRawAxis(Constants.Control.XboxController.kLEFT), 
+            -this.driveController.getRawAxis(Constants.Control.XboxController.kRIGHT));     
     }
     
 

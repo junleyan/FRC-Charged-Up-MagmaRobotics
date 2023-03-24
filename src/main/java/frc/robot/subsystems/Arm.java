@@ -87,5 +87,10 @@ public class Arm extends SubsystemBase {
         System.out.println("Command Log: Upper arm is stopped");
     }
 
+    public void stopAll(){
+        this.upperArm.stopMotor();
+        this.lowerArm.stopMotor();
+    }
+
   
 }

@@ -13,12 +13,15 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.arm.LowerArmAuto;
 import frc.robot.commands.arm.LowerArmDown;
 import frc.robot.commands.arm.LowerArmStop;
 import frc.robot.commands.arm.LowerArmUp;
+import frc.robot.commands.arm.UpperArmAuto;
 import frc.robot.commands.arm.UpperArmDown;
 import frc.robot.commands.arm.UpperArmStop;
 import frc.robot.commands.arm.UpperArmUp;
+import frc.robot.commands.claw.ClawAutoOpen;
 import frc.robot.commands.claw.ClawClose;
 import frc.robot.commands.claw.ClawOpen;
 import frc.robot.commands.claw.ClawStop;
@@ -45,24 +48,17 @@ public class RobotContainer {
     // The robot's subsystems and commands are defined here... 
     DriveTrain driveTrain;
     Arm arm;
-    NavX navx;
     Claw claw;
-    Arduino arduino;
 
     XboxController driverController, driverPartnerController;
     JoystickButton buttonA, buttonB, buttonX, buttonY, rightBumper, leftBumper, driverRightBumper;
     POVButton upPOV, downPOV, leftPOV, rightPOV;
-
-    UsbCamera camera_a; 
-    UsbCamera camera_b;
     
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
-        this.navx = new NavX();
         this.driveTrain = new DriveTrain();
         this.arm = new Arm();
         this.claw = new Claw();
-        this.arduino = new Arduino();
 
         this.driverController = new XboxController(Constants.Control.ControllerPort.kDRIVER);
         this.driverPartnerController = new XboxController(Constants.Control.ControllerPort.kPARTNER);
@@ -80,15 +76,7 @@ public class RobotContainer {
         this.leftPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kLEFT);
         this.rightPOV = new POVButton(driverPartnerController, Constants.Control.POVButton.kRIGHT);
       
-        this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
-        
-        this.camera_a = CameraServer.startAutomaticCapture(0);
-        this.camera_b = CameraServer.startAutomaticCapture(1);
-
-        this.camera_a.setResolution(640, 480);
-        this.camera_b.setResolution(640, 480);
-        this.camera_a.setFPS(30);
-        this.camera_b.setFPS(30);
+        this.driveTrain.setDefaultCommand(new DriveTrainCommand(this.driveTrain, this.driverController));
         
         // Configure the trigger bindings
         this.configureBindings();
@@ -112,7 +100,7 @@ public class RobotContainer {
         this.buttonY.onTrue(new LowerArmDown(this.arm)).onFalse(new LowerArmStop(this.arm));
         this.leftBumper.onTrue(new ClawOpen(this.claw)).onFalse(new ClawStop(this.claw));
         this.rightBumper.onTrue(new ClawClose(this.claw)).onFalse(new ClawStop(this.claw));
-        this.driverRightBumper.onTrue(new DriveSlower(this.driveTrain, this.driverController, this.navx)).onFalse(new DriveTrainCommand(this.driveTrain, this.driverController, this.navx));
+        this.driverRightBumper.onTrue(new DriveSlower(this.driveTrain, this.driverController)).onFalse(new DriveTrainCommand(this.driveTrain, this.driverController));
     }
 
 
@@ -123,10 +111,11 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         return new SequentialCommandGroup(
-            // new LowerArmAuto(this.arm, 2000),
-            // new Movement(this.driveTrain, 3000, 0.5, 0.5),
+            // new UpperArmAuto(this.arm, 50),
+            new ClawAutoOpen(this.claw, 1000),
+            new Movement(this.driveTrain, 4000, -0.5, -0.5)
             // new AutoBalance(this.driveTrain, this.navx, 5000)
-            );
+        );
         
         //Just edit the times and power
       }

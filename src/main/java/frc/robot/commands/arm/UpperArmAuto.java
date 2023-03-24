@@ -28,8 +28,7 @@ public class UpperArmAuto extends CommandBase {
 
     // called repeatedly when this Command is scheduled to run
     public void execute() {
-        this.arm.upperArmUp();
-        System.out.println("executing auto");
+        this.arm.upperArmDown();
     }
 
 
@@ -43,8 +42,7 @@ public class UpperArmAuto extends CommandBase {
     // called once after isFinished returns true
     // drive train is stopped
     protected void end() {
-        System.out.println("auto done");
-        this.arm.upperArmStop();
+        this.arm.stopAll();
     }
 
 
