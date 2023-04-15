@@ -36,7 +36,7 @@ public class Claw extends SubsystemBase {
 
 
     public void open() {
-        this.claw.set(-Constants.Subsystems.Claw.kPOWER);
+        this.claw.set(-Constants.Subsystems.Claw.IntakekPOWER);
         this.position += this.counter.get();
         System.out.println("Command Log: Opened claw");
         SmartDashboard.putNumber("Claw Position", this.position);
@@ -45,7 +45,7 @@ public class Claw extends SubsystemBase {
 
 
     public void close() {
-        this.claw.set(Constants.Subsystems.Claw.kPOWER);
+        this.claw.set(Constants.Subsystems.Claw.OuttakekPOWER);
         this.position -= this.counter.get();
         System.out.println("Command Log: Closed claw");
         SmartDashboard.putNumber("Claw Position", this.position);
